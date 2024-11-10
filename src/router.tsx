@@ -5,11 +5,14 @@ import Article from "./pages/Article";
 import BestSeller from "./pages/BestSeller";
 import Cart from "./pages/Cart";
 import Category from "./pages/Category";
+import Contact from "./pages/Contact";
 import Keyword from "./pages/Keyword";
 import List from "./pages/List";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Subcategory from "./pages/Subcategory";
+
+
 
 
 
@@ -40,6 +43,10 @@ const router = createBrowserRouter([
         element: <Category />,
       },
       {
+        path: 'contact',
+        element: <Contact />,
+      },
+      {
         path: 'keyword',
         element: <Keyword />,
       },
@@ -56,7 +63,7 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: 'subcategorie',
+        path: 'subcategory',
         element: <Subcategory />,
       },
     ],
