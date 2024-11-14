@@ -1,4 +1,8 @@
 function Keyword(){
-    return <>keyword page</>;
+    return <>
+        <div>
+            keyword page
+        </div>
+    </>;
 }
 export default Keyword;

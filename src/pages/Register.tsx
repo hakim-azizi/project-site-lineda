@@ -1,4 +1,8 @@
 function Register(){
-    return <>Register page</>;
+    return <>
+        <div>
+            Register page
+        </div>
+    </>;
 }
 export default Register;

@@ -1,4 +1,8 @@
 function Login(){
-    return <>Login page</>;
+    return <>
+    <div>
+        Login page
+    </div>
+    </>;
 }
 export default Login;

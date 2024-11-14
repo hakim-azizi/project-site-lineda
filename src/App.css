@@ -67,17 +67,11 @@ aside{
 	display: flex;
 	align-items: stretch;
 	gap: 1rem;
-	overflow-x: hidden;
-	overflow-y: hidden;
+	overflow: hidden;
 	margin-top: 2.5rem;
 }
 
 @media (max-width: 800px){
-	.alignment{
-		margin-left: -15.625rem;
-
-	}
-
 	main,
 	h1{
 		width: calc(100vw - 2rem);
@@ -85,11 +79,6 @@ aside{
 }
 
 @media (min-width: 801px){
-	.alignment{
-		margin-left: 0;
-
-	}
-
 	h1,
 	header>p,aside,
 	main{

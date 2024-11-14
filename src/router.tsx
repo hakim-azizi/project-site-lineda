@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
-import Article from "./pages/Article";
+import Item from "./pages/Item";
 import BestSeller from "./pages/BestSeller";
 import Cart from "./pages/Cart";
 import Category from "./pages/Category";
@@ -27,8 +27,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'article',
-        element: <Article />,
+        path: 'category/subcategory/item',
+        element: <Item />,
       },
       {
         path: 'best-seller',
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: 'subcategory',
+        path: 'category/subcategory',
         element: <Subcategory />,
       },
     ],

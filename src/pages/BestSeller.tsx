@@ -1,4 +1,8 @@
 function BestSeller(){
-    return <>Best-seller page</>;
+    return <>
+    <div>
+        Best-seller page
+        </div>
+    </>;
 }
 export default BestSeller;
