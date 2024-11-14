@@ -1,4 +1,8 @@
 function Cart(){
-    return <>Cart page</>;
+    return <>
+        <div>
+            Cart page
+        </div>
+    </>;
 }
 export default Cart;

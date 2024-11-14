@@ -1,4 +1,8 @@
 function List(){
-    return <>List page</>;
+    return <>
+        <div>
+            List page
+        </div>
+    </>;
 }
 export default List;

@@ -81,11 +81,6 @@ font-size: .7rem;
 		display:none;
 	}
 
-	.alignment{
-		margin-left: -15.625rem;
-
-	}
-
 	main,
 	h1{
 		width: calc(100vw - 1rem);
@@ -101,10 +96,6 @@ font-size: .7rem;
 		display:block;
 	}
 
-	.menu{
-		margin-left: 0;
-		}
-
 	h1,
 	header>p,
 	main{
@@ -119,7 +110,7 @@ font-size: .7rem;
 	position: absolute;
 	top: 2.5rem;
 	z-index: 1;
-	margin-left: calc(100vw);
+	margin-left: calc(100vw-15.625rem);
 	
 }
 
