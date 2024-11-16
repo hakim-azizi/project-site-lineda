@@ -40,14 +40,14 @@ ref={menuRef}>
 	</li>
 	<li>En savoir plus
 		<ul>
-			<li><NavLink to='keyword'>Mot clé</NavLink></li>
-			<li><NavLink to='keyword'>Mot clé</NavLink></li>
-			<li><NavLink to='keyword'>Mot clé</NavLink></li>
-			<li><NavLink to='keyword'>Mot clé</NavLink></li>
-			<li><NavLink to='keyword'>Mot clé</NavLink></li>
-			<li><NavLink to='keyword'>Mot clé</NavLink></li>
-			<li><NavLink to='keyword'>Mot clé</NavLink></li>
-			<li><NavLink to='keyword'>Mot clé</NavLink></li>
+			<li><NavLink to='learn-more/keyword'>Mot clé</NavLink></li>
+			<li><NavLink to='learn-more/keyword'>Mot clé</NavLink></li>
+			<li><NavLink to='learn-more/keyword'>Mot clé</NavLink></li>
+			<li><NavLink to='learn-more/keyword'>Mot clé</NavLink></li>
+			<li><NavLink to='learn-more/keyword'>Mot clé</NavLink></li>
+			<li><NavLink to='learn-more/keyword'>Mot clé</NavLink></li>
+			<li><NavLink to='learn-more/keyword'>Mot clé</NavLink></li>
+			<li><NavLink to='learn-more/keyword'>Mot clé</NavLink></li>
 		</ul>
 	</li>
 	<li>Condition de vente</li>

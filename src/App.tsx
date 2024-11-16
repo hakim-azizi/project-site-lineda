@@ -10,7 +10,7 @@ import './App.css';
 function App() {
 	// Référence pour accéder au bouton
 	const [openMenu,setOpenMenu]=useState<number>(0);
-	const [screenWidth,setScreenWidth]=useState(0);
+	const [screenWidth,setScreenWidth]=useState<number>(0);
 	const menuRef=useRef<HTMLDivElement>(null);
 	const buttonRef = useRef<HTMLButtonElement>(null);
 	const alignmentRef=useRef<HTMLDivElement>(null);
