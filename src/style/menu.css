@@ -4,7 +4,7 @@
 	overflow: hidden;
 	width: 15.625rem;
 	flex-shrink: 0;
-	transition: width 0.3s ease;
+	transition: width 0.65s ease;
 	}
 
 .menu>ul{width: 15.625rem;}

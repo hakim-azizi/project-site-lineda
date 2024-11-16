@@ -71,6 +71,10 @@ aside{
 	margin-top: 2.5rem;
 }
 
+.alignment{
+	min-height: calc(100vh - 5rem);
+}
+
 @media (max-width: 800px){
 	main,
 	h1{
