@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: 'keyword',
+        path: 'learn-more/keyword',
         element: <Keyword />,
       },
       {
