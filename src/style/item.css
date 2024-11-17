@@ -1,18 +1,13 @@
-aside>figure{
-	position:relative;
-}
+.picture{
+	display: block !important;
+	float: left !important;
+	margin-right: .5rem !important;
+	width: 35% !important;
+	min-width: 15.625rem !important;
+	height:auto !important;
+	}
 
-aside>figure>figcaption,
-aside>figure>img,
-aside>figure>a>img{
-	border-radius: 1rem;
-}
-
-aside>figure>figcaption{
-	position: absolute;
-	bottom: .5rem;
-	text-align: center;
-	width:100%;
-	background: #C8C8C8;
-	opacity: 0.7;
-}
+	.picture>figure>a>img{
+		width:100%;
+		height:auto;
+	}
