@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import '../style/item.css';
+import '../style/items.css';
 
 export interface ItemsProps {
   name: string;
