@@ -93,7 +93,7 @@
                 "url":""
             }
         ],
-	"item":
+	"items":
         [
             {
                 "id":"1",
@@ -102,7 +102,7 @@
                 "category":"1",
                 "subcategory":"1",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article1.jpg"
             },
             {
                 "id":"2",
@@ -111,7 +111,7 @@
                 "category":"1",
                 "subcategory":"2",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article2.jpg"
             },
             {
                 "id":"3",
@@ -120,7 +120,7 @@
                 "category":"1",
                 "subcategory":"3",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article3.jpg"
             },
             {
                 "id":"4",
@@ -129,7 +129,7 @@
                 "category":"1",
                 "subcategory":"4",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article4.jpg"
             },
             {
                 "id":"5",
@@ -138,7 +138,7 @@
                 "category":"1",
                 "subcategory":"5",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article5.jpg"
             },
             {
                 "id":"6",
@@ -147,7 +147,7 @@
                 "category":"1",
                 "subcategory":"6",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article6.jpg"
             },
             {
                 "id":"7",
@@ -156,7 +156,7 @@
                 "category":"1",
                 "subcategory":"7",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article7.jpg"
             },
             {
                 "id":"8",
@@ -165,7 +165,7 @@
                 "category":"1",
                 "subcategory":"8",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article8.jpg"
             },
             {
                 "id":"9",
@@ -174,7 +174,7 @@
                 "category":"1",
                 "subcategory":"9",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article9.jpg"
             },
             {
                 "id":"10",
@@ -183,7 +183,7 @@
                 "category":"1",
                 "subcategory":"10",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article10.jpg"
             }
         ]
 }
