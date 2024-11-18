@@ -25,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <Home />,
+        loader: () =>
+          fetch('http://localhost:3000/api/product.json').then(
+            (response) => response.json()
+          ),
       },
       {
         path: 'category/subcategory/item',
