@@ -38,7 +38,6 @@ function App() {
 		function handleResize() {
 			setScreenWidth(window.innerWidth);
 			if (menuRef.current) {
-				console.log(screenWidth)
 		  if(screenWidth > 800) {
 			
 				menuRef.current.style.width = `${15.625}rem`;
