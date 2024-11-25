@@ -11,11 +11,7 @@ import List from "./pages/List";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Subcategory from "./pages/Subcategory";
-
-
-
-
-
+import ConditionOfSale from "./pages/TermsOfSale";
 
 const router = createBrowserRouter([
   {
@@ -47,8 +43,12 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: 'learn-more/keyword',
+        path: 'learn-more/:slug',
         element: <Keyword />,
+        loader: () =>
+          fetch('http://localhost:3000/api/keywords.json').then(
+            (response) => response.json()
+          ),
       },
       {
         path: 'list',
@@ -66,7 +66,10 @@ const router = createBrowserRouter([
         path: 'category/subcategory',
         element: <Subcategory />,
       },
-    ],
+    ],},
+    {
+    path: '/condition-of-sale',
+    element: <ConditionOfSale />,
   },
 ]);
 

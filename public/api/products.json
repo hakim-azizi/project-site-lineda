@@ -20,7 +20,7 @@
                 "url":""
             }
         ],
-	"subcategory":
+	"subCategory":
         [
             {
                 "id":"1",
@@ -59,131 +59,141 @@
             },
             {
                 "id":"6",
-                "name":"subcategory6",
+                "name":"subcategory1",
                 "category":"2",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "url":""
             },
             {
                 "id":"7",
-                "name":"Subcategory7",
+                "name":"Subcategory2",
                 "category":"2",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "url":""
             },
             {
                 "id":"8",
-                "name":"Subcategory8",
+                "name":"Subcategory3",
                 "category":"2",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "url":""
             },
             {
                 "id":"9",
-                "name":"Subcategory9",
+                "name":"Subcategory4",
                 "category":"2",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "url":""
             },
             {
                 "id":"10",
-                "name":"Subcategory10",
+                "name":"Subcategory1",
                 "category":"3",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "url":""
             }
         ],
-	"item":
+	"items":
         [
             {
                 "id":"1",
                 "name":"Item1",
+                "price":"20",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "category":"1",
                 "subcategory":"1",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article1.jpg"
             },
             {
                 "id":"2",
                 "name":"Item2",
+                "price":"40",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "category":"1",
                 "subcategory":"2",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article2.jpg"
             },
             {
                 "id":"3",
                 "name":"Item3",
+                "price":"35",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "category":"1",
                 "subcategory":"3",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article3.jpg"
             },
             {
                 "id":"4",
                 "name":"Item4",
+                "price":"33",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "category":"1",
                 "subcategory":"4",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article4.jpg"
             },
             {
                 "id":"5",
                 "name":"Item5",
+                "price":"55",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "category":"1",
                 "subcategory":"5",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article5.jpg"
             },
             {
                 "id":"6",
                 "name":"Item6",
+                "price":"38",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "category":"1",
                 "subcategory":"6",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article6.jpg"
             },
             {
                 "id":"7",
                 "name":"Item7",
+                "price":"96",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "category":"1",
                 "subcategory":"7",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article7.jpg"
             },
             {
                 "id":"8",
                 "name":"Item8",
+                "price":"33",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "category":"1",
                 "subcategory":"8",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article8.jpg"
             },
             {
                 "id":"9",
                 "name":"Item9",
+                "price":"80",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "category":"1",
                 "subcategory":"9",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article9.jpg"
             },
             {
                 "id":"10",
                 "name":"Item10",
+                "price":"100",
                 "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?",
                 "category":"1",
                 "subcategory":"10",
                 "url":"",
-                "picture":""
+                "picture":"http://localhost:3000/asset/photo/photo-article10.jpg"
             }
         ]
 }

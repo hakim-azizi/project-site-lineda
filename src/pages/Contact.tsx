@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import '../style/form.css';
 
 function Contact(){
-
+	const siteName:string='Lineda';
     return <>
         <div>
         <header>
@@ -27,7 +27,7 @@ function Contact(){
 				<article>
 					<h3>Par voie postal</h3>
 					<p>
-						Nom du site<br />
+					{siteName}<br />
 						1 rue de la rue<br />
 						00000 Ville
 					</p>

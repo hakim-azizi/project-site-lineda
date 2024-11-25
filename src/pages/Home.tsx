@@ -1,125 +1,107 @@
-import Items from "../component/Items";
-import { ItemsProps } from "../component/Items";
+import React, { useContext } from "react";
+import { ProductContext } from "../contexts/ProductProvider";
+import Items, {ItemsProps} from '../component/Items';
 
-import '../style/home.css';
+const Home: React.FC = () => {
+  const context = useContext(ProductContext);
+  
+  if (!context) {
+    return <p>Chargement des données...</p>;
+  }
+  
 
-function Home(){
+  const { content, isLoading, error } = context;
 
-	const articles:ItemsProps[]=[
-		{
-			name:'A',
-			picture:'asset/photo/photo-article1.jpg',
-			price:50,
-			url:'category/subcategory/item'
-		},
-		{
-			name:'B',
-			picture:'asset/photo/photo-article2.jpg',
-			price:46,
-			url:'category/subcategory/item'
-		},
-		{
-			name:'C',
-			picture:'asset/photo/photo-article3.jpg',
-			price:58,
-			url:'category/subcategory/item'
-		},
-		{
-			name:'D',
-			picture:'asset/photo/photo-article4.jpg',
-			price:95,
-			url:'category/subcategory/item'
-		},
-		{
-			name:'E',
-			picture:'asset/photo/photo-article5.jpg',
-			price:38,
-			url:'category/subcategory/item'
-		},
-		{
-			name:'F',
-			picture:'asset/photo/photo-article6.jpg',
-			price:55,
-			url:'category/subcategory/item'
-		},
-		{
-			name:'G',
-			picture:'asset/photo/photo-article7.jpg',
-			price:40,
-			url:'category/subcategory/item'
-		},
-		{
-			name:'H',
-			picture:'asset/photo/photo-article8.jpg',
-			price:35,
-			url:'category/subcategory/item'
-		},
-		{
-			name:'I',
-			picture:'asset/photo/photo-article9.jpg',
-			price:63,
-			url:'category/subcategory/item'
-		},
-		{
-			name:'J',
-			picture:'asset/photo/photo-article10.jpg',
-			price:57,
-			url:'category/subcategory/item'
-		}
-	];
+  if(error) return <p className="red-color">Une Erreur c'est produite lors du chargement des données</p>
 
-	const category:any=[
-		{
-			name:'Robe',
-			description:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?'
-		}
-	];
+  if (isLoading || !content.items.length)  return <p>Chargement des données...</p>;
+  
+const randomiser=(max:number)=>{
+  const random:number= Math.floor(Math.random() * max);
+  return random;
+}
 
-	const subCategory:any=[
-		{
-			name:'Robe orientale',
-			description:'Dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore.'
-		}
-	];
+ const randomNumbers= ()=> {
+    const numbers:number[] = [];
+    while (numbers.length < 10) {
+        const randomNumber:number = Math.floor(Math.random() * ((content.subCategory.length-1) - 0 + 1)) + 0;
+        if (!numbers.includes(randomNumber)) {
+            numbers.push(randomNumber);
+        }
+    }
+    return numbers;
+}
+ 
+  // Récupération des données
+  const articles: ItemsProps[] = content.items;
+  const category = content.category[randomiser(content.category.length)];
+  const subCategory = content.subCategory[randomiser(content.subCategory.length)];
+  
+  return (
+    <>
+      <div>
+        <header>
+          <h1 className="center">LINEDA V&ecirc;tements</h1>
+        </header>
+        <img
+          className="visual"
+          src="asset/pictures/834e550a-baa2-490b-bbbb-50e3653674a3.jpg"
+          alt=""
+        />
+        <main>
+          <section>
+            <h2>Sous-titre</h2>
+            <p>Voici une présentation de quelques articles</p>
+            <aside className="home">
+              {randomNumbers().map((rand) => (
+                <Items
+                  key={rand}
+                  name={articles[rand].name}
+                  picture={articles[rand].picture}
+                  price={articles[rand].price}
+                  url={articles[rand].url}
+                />
+              ))}
+            </aside>
+          </section>
+          <section>
+            <h2>{category.name}</h2>
+            <article>
+              <p>{category.description}</p>
+            </article>
+            <aside className="home">
+            {randomNumbers().map((rand) => (
+                <Items
+                  key={rand}
+                  name={articles[rand].name}
+                  picture={articles[rand].picture}
+                  price={articles[rand].price}
+                  url={articles[rand].url}
+                />
+              ))}
+            </aside>
+          </section>
+          <section>
+            <article>
+              <h2>{subCategory.name}</h2>
+              <p>{subCategory.description}</p>
+            </article>
+            <aside className="home">
+            {randomNumbers().map((rand) => (
+                <Items
+                  key={rand}
+                  name={articles[rand].name}
+                  picture={articles[rand].picture}
+                  price={articles[rand].price}
+                  url={articles[rand].url}
+                />
+              ))}
+            </aside>
+          </section>
+        </main>
+      </div>
+    </>
+  );
+}
 
-		return <>
-			<div>
-		<header>
-			<h1 className='center'>LINEDA V&ecirc;tements</h1>
-		</header>
-		<img className='visual' src='asset/pictures/834e550a-baa2-490b-bbbb-50e3653674a3.jpg' alt='' />
-		<main>
-			<section>
-			<h2>Sous-titre</h2>
-			<p>Voici une présentation de quelques articles</p>
-			<aside className='home'>
-{articles.map((article)=><Items key={article.name} name={article.name} picture={article.picture} price={article.price} url={article.url} />)}
-							</aside>
-			</section>
-			<section>
-				<h2>{category[0].name}</h2>
-				<article>
-					<p>
-					{category[0].description}
-					</p>
-				</article>
-				<aside className='home'>
-				{articles.map((article)=><Items key={article.name} name={article.name} picture={article.picture} price={article.price} url={article.url} />)}
-				</aside>
-			</section>
-			<section>
-				<article>
-				<h2>{subCategory[0].name}</h2>
-					<p>
-					{subCategory[0].description}
-					</p>
-				</article>
-				<aside className='home'>
-				{articles.map((article)=><Items key={article.name} name={article.name} picture={article.picture} price={article.price} url={article.url} />)}
-				</aside>
-			</section>
-		</main>
-		</div>
-			</>
-};
 export default Home;
