@@ -7,7 +7,12 @@
 	height:auto !important;
 	}
 
-	.picture>figure>a>img{
+	.picture>figure>img{
 		width:100%;
 		height:auto;
+	}
+
+	object{
+		position: fixed;
+		margin:auto;
 	}

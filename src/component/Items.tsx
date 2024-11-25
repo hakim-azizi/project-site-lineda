@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import '../style/items.css';
 
-export interface ItemsProps {
+export type ItemsProps = {
   name: string;
   picture: string;
   price:number;

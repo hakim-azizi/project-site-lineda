@@ -80,7 +80,6 @@ function BestSeller(){
 				</section>
 		</main>
 			</div>
-
     </>;
 }
 export default BestSeller;
