@@ -1,15 +1,23 @@
 import React, { useContext, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import ImageZoomer from "../component/ImageZoomer";
 import { ProductContext } from "../contexts/ProductProvider";
+import { ItemProps } from "../contexts/ProductProvider";
 
 import '../style/item.css';
 import '../style/form.css';
 
 const Item: React.FC = () => {
+  const location = useLocation().pathname;
+  
+const verif=location.split('/').filter(function (e) {
+  return e; // Returns only the truthy values
+});
+
+
   const quantityRef = useRef<HTMLSelectElement | null>(null); // Appeler useRef correctement
  const [singularPlural,setSingularPlural]=useState<string>("de l'article");
-  const [quantity,setQuantity]=useState<number>(1);
-  const [price,setPrice]=useState<number>(10);
+  const [price,setPrice]=useState<number>(0);
   const context = useContext(ProductContext);
 
   if (!context) {
@@ -21,13 +29,18 @@ const Item: React.FC = () => {
   if (error) return <p className="red-color">Une erreur s'est produite lors du chargement des données</p>;
 
   if (isLoading || !content.items.length) return <p>Chargement des données...</p>;
+  let articles:ItemProps[]=[];
 
-  const articles = content.items[5];
-const priceUnit=10;
+content.items.map((article)=>{ if (article.name.toLowerCase() === verif[2]){ 
+  articles.push(article);
+}
+return 'ca marche'}
+  );
+  
+const priceUnit:number=Number(articles[0].price);
   const val = () => {
    
     if (quantityRef.current!==null) {
-		setQuantity(parseInt(quantityRef.current.value));
     if(parseInt(quantityRef.current.value)>1)
       {
         setSingularPlural('des articles');
@@ -50,23 +63,21 @@ const priceUnit=10;
   return (
     <div>
       <header>
-        <h1 className="center">{articles.name}</h1>
+        <h1 className="center">{articles[0].name}</h1>
       </header>
       <main>
         <section>
-          <h2>{articles.name}</h2>
+          <h2>{articles[0].name}</h2>
           <aside className="picture">
-            <ImageZoomer picture={articles.picture}/>
+            <ImageZoomer picture={articles[0].picture} />
           </aside>
           <article>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo
-              dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis
-              praesentium ex a itaque esse vel labore?
+                {articles[0].description}
             </p>
             <form action="" method="get" id="cart">
               <p>
-                Nom de l'article : {articles.name}.
+                Nom de l'article : {articles[0].name}.
                 <input type="hidden" name="id-article" value="1" id="id-article" />
               </p>
               <label>
@@ -82,11 +93,11 @@ const priceUnit=10;
                 </select>
               </label>
               <p>
-                Prix : <span className="red-color">{priceUnit} &euro;</span>
+                Prix : <span className="red-color">{articles[0].price} &euro;</span>
                 <input type="hidden" name="price" id="price" value={priceUnit} />
               </p>
               <p>
-                <span id="singular">Prix {singularPlural}</span> : <span className="red-color" id="price-items">{price} &euro;</span>
+                <span id="singular">Prix {singularPlural}</span> : <span className="red-color" id="price-items">{price!==0 ? price : articles[0].price}  &euro;</span>
               </p>
               <button type="submit">Ajouter au panier</button>
             </form>

@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'category/subcategory/item',
+        path: ':slug/:slug/:slug',
         element: <Item />,
       },
       {
@@ -35,8 +35,18 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: 'category',
+        path: ':slug/',
         element: <Category />,
+        // children: [
+        //   {
+        //     path: ':slug',
+        //     element: <Subcategory />,
+        //   },
+        //   {
+        //     path: ':slug/:slug',
+        //     element: <Item />,
+        //   },
+        // ],
       },
       {
         path: 'contact',
@@ -63,7 +73,7 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: 'category/subcategory',
+        path: ':slug/:slug/',
         element: <Subcategory />,
       },
     ],},
