@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { ProductContext } from "../contexts/ProductProvider";
 import Items, {ItemsProps} from '../component/Items';
-import { NavLink } from "react-router-dom";
 
 const Home: React.FC = () => {
   const context = useContext(ProductContext);

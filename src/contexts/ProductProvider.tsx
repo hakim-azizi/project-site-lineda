@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState, ReactNode } from "react";
 
 export type ItemProps = {
+  id:string;
   name: string;
   price: number;
   description: string;
@@ -8,6 +9,7 @@ export type ItemProps = {
   subcategory: string;
   picture: string;
   url: string;
+  color:string;
 };
 
 export type CategoryProps = {
@@ -50,7 +52,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) =>
   });
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/products.json")
+    fetch(`${process.env.REACT_APP_API_URL}/api/products.json`)
     .then((response) => response.json())
     .then((data) => {
       setContent(data);

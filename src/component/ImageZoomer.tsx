@@ -44,8 +44,6 @@ const ImageZoomer: React.FC<PictureProps> = ({ picture }) => {
 
   const pictureZoom = picture.replace('.jpg','-zoom.jpg');
 
-  console.log('pictureZoom => ',pictureZoom)
-
   return (
     <figure
       id="img-zoomer-box"

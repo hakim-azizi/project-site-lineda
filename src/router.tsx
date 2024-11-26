@@ -3,7 +3,7 @@ import App from "./App";
 import Home from "./pages/Home";
 import Item from "./pages/Item";
 import BestSeller from "./pages/BestSeller";
-import Cart from "./pages/Cart";
+import CartPage from "./pages/CartPage";
 import Category from "./pages/Category";
 import Contact from "./pages/Contact";
 import Keyword from "./pages/Keyword";
@@ -32,21 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'cart',
-        element: <Cart />,
+        element: <CartPage />,
       },
       {
         path: ':slug/',
         element: <Category />,
-        // children: [
-        //   {
-        //     path: ':slug',
-        //     element: <Subcategory />,
-        //   },
-        //   {
-        //     path: ':slug/:slug',
-        //     element: <Item />,
-        //   },
-        // ],
       },
       {
         path: 'contact',
@@ -56,7 +46,7 @@ const router = createBrowserRouter([
         path: 'learn-more/:slug',
         element: <Keyword />,
         loader: () =>
-          fetch('http://localhost:3000/api/keywords.json').then(
+          fetch(`${process.env.REACT_APP_API_URL}/api/keywords.json`).then(
             (response) => response.json()
           ),
       },

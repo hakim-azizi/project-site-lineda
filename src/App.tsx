@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { ProductProvider } from "./contexts/ProductProvider"; // Importez le ProductProvider
+import { CartProvider } from "./contexts/CartContext";
 import Footer from "./component/Footer";
 import Navbar from "./component/Navbar";
 import Menu from "./component/Menu";
@@ -60,13 +61,15 @@ function App() {
 
   return (
     <>
+    <CartProvider>
       <Navbar menu={menu} buttonRef={buttonRef} />
       <div className="alignment" ref={alignmentRef}>
       <ProductProvider>
         <Menu menuRef={menuRef} />
            <Outlet />
         </ProductProvider>
-      </div>
+       </div>
+       </CartProvider >
       <Footer />
     </>
   );
