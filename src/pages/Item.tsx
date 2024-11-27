@@ -64,7 +64,7 @@ const Item: React.FC = () => {
 
     addToCart(product);
 
-    const url = `../../add-cart-object.html?name=${articles[0].name}&price=${priceUnit}&quantity=${quantity}`;
+    const url = `http://localhost:8000/add-cart-object.php?name=${articles[0].name}&price=${priceUnit}&quantity=${quantity}`;
     setObjectDataUrl(url); // Met à jour la balise <object>
   };
 

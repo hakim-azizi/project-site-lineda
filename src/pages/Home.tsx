@@ -36,7 +36,7 @@ const randomiser=(max:number)=>{
   const articles: ItemsProps[] = content.items;
   const category = content.category[randomiser(content.category.length)];
   const subCategory = content.subCategory[randomiser(content.subCategory.length)];
-  
+  console.log('env =>',process.env.REACT_APP_API_URL)
   return (
     <>
       <div>
