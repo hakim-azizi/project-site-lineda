@@ -46,8 +46,8 @@ const router = createBrowserRouter([
         path: 'learn-more/:slug',
         element: <Keyword />,
         loader: () =>
-          fetch(`${process.env.REACT_APP_API_URL}/api/keywords.json`).then(
-            (response) => response.json()
+          fetch(`${process.env.REACT_APP_API_URL}/api.php?api=keywords`)
+          .then((response) => response.json()
           ),
       },
       {

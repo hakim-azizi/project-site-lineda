@@ -15,7 +15,7 @@ export type ElementProps = {
 	function Menu( {menuRef }: ElementProps ){
 		const [keyword,setKeyword] = useState<Keyword[]>([]);
 		useEffect(() => {
-			fetch(`${process.env.REACT_APP_API_URL}/api/keywords.json`)
+			fetch(`${process.env.REACT_APP_API_URL}/api.php?api=keywords`)
 			.then((response) => response.json())
 			.then((data) => {
 			  setKeyword(data.keywords);
