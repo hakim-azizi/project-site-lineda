@@ -1,6 +1,7 @@
-import React, { createContext, useEffect, useState, ReactNode } from "react";
+import React, { createContext, useEffect, useState, ReactNode } from 'react';
 
 export type ItemProps = {
+  id:string;
   name: string;
   price: number;
   description: string;
@@ -8,12 +9,14 @@ export type ItemProps = {
   subcategory: string;
   picture: string;
   url: string;
+  color:string;
 };
 
 export type CategoryProps = {
   id: string;
   name: string;
   description: string;
+  category:string
 };
 
 export type subCategoryProps = {
@@ -41,16 +44,16 @@ export type ProductProviderProps = {
 export const ProductContext = createContext<ProductContextType | null>(null);
 
 export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) => {
-  const [error,setError]=useState<ProductContextType["error"]>(false);
-  const[isLoading, setIsLoading]=useState<ProductContextType["isLoading"]>(false);
-  const [content, setContent] = useState<ProductContextType["content"]>({
+  const [error,setError]=useState<ProductContextType['error']>(false);
+  const[isLoading, setIsLoading]=useState<ProductContextType['isLoading']>(false);
+  const [content, setContent] = useState<ProductContextType['content']>({
     items: [],
     category: [],
     subCategory: []
   });
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/products.json")
+    fetch(`${process.env.REACT_APP_API_URL}/api.php?api=products`)
     .then((response) => response.json())
     .then((data) => {
       setContent(data);

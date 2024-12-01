@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
-import { ProductContext } from "../contexts/ProductProvider";
+import React, { useContext } from 'react';
+import { ProductContext } from '../contexts/ProductProvider';
 import Items, {ItemsProps} from '../component/Items';
+
+import '../style/home.css'
 
 const Home: React.FC = () => {
   const context = useContext(ProductContext);
@@ -12,7 +14,7 @@ const Home: React.FC = () => {
 
   const { content, isLoading, error } = context;
 
-  if(error) return <p className="red-color">Une Erreur c'est produite lors du chargement des données</p>
+  if(error) return <p className='red-color'>Une Erreur c'est produite lors du chargement des données</p>
 
   if (isLoading || !content.items.length)  return <p>Chargement des données...</p>;
   
@@ -21,10 +23,10 @@ const randomiser=(max:number)=>{
   return random;
 }
 
- const randomNumbers= ()=> {
+ const randomNumbers= (action:number)=> {
     const numbers:number[] = [];
     while (numbers.length < 10) {
-        const randomNumber:number = Math.floor(Math.random() * ((content.subCategory.length-1) - 0 + 1)) + 0;
+        const randomNumber:number = Math.floor(Math.random() * ((action-1) - 0 + 1)) + 0;
         if (!numbers.includes(randomNumber)) {
             numbers.push(randomNumber);
         }
@@ -41,19 +43,19 @@ const randomiser=(max:number)=>{
     <>
       <div>
         <header>
-          <h1 className="center">LINEDA V&ecirc;tements</h1>
+          <h1 className='center'>LINEDA V&ecirc;tements</h1>
         </header>
         <img
-          className="visual"
-          src="asset/pictures/834e550a-baa2-490b-bbbb-50e3653674a3.jpg"
-          alt=""
+          className='visual'
+          src='asset/pictures/834e550a-baa2-490b-bbbb-50e3653674a3.jpg'
+          alt=''
         />
         <main>
           <section>
             <h2>Sous-titre</h2>
             <p>Voici une présentation de quelques articles</p>
-            <aside className="home">
-              {randomNumbers().map((rand) => (
+            <aside className='home'>
+              {randomNumbers(content.items.length).map((rand) => (
                 <Items
                   key={rand}
                   name={articles[rand].name}
@@ -69,8 +71,8 @@ const randomiser=(max:number)=>{
             <article>
               <p>{category.description}</p>
             </article>
-            <aside className="home">
-            {randomNumbers().map((rand) => (
+            <aside className='home'>
+            {randomNumbers(content.items.length).map((rand) => (
                 <Items
                   key={rand}
                   name={articles[rand].name}
@@ -86,8 +88,8 @@ const randomiser=(max:number)=>{
               <h2>{subCategory.name}</h2>
               <p>{subCategory.description}</p>
             </article>
-            <aside className="home">
-            {randomNumbers().map((rand) => (
+            <aside className='home'>
+            {randomNumbers(content.items.length).map((rand) => (
                 <Items
                   key={rand}
                   name={articles[rand].name}

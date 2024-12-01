@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import '../style/form.css';
 
 function Contact(){
-	const siteName:string='Lineda';
+	const siteName:string="LINEDA VÊTEMENT's";
     return <>
         <div>
         <header>

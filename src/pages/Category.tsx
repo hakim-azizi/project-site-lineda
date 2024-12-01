@@ -1,99 +1,77 @@
-import Items from "../component/Items";
-import { ItemsProps } from "../component/Items";
+import React, { useContext } from 'react';
+import { ProductContext } from '../contexts/ProductProvider';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Item from './Item';
+import CategoryItems ,{ArticleProp,catProps} from '../component/CategoryItems';
 
-import '../style/home.css';
+const Category: React.FC = () => {
+	const context = useContext(ProductContext);
+	const location = useLocation().pathname;
+	const redirect=useNavigate();
+	const verif = location.split('/').filter((e) => e);
 
-function Category(){
+  const navigate = useNavigate();
 
-	const articles:ItemsProps[]=[
-		{
-			name:'A',
-			picture:'../asset/photo/photo-article1.jpg',
-			price:50,
-			url:'subcategory/item'
-		},
-		{
-			name:'B',
-			picture:'../asset/photo/photo-article2.jpg',
-			price:46,
-			url:'subcategory/item'
-		},
-		{
-			name:'C',
-			picture:'../asset/photo/photo-article3.jpg',
-			price:58,
-			url:'subcategory/item'
-		},
-		{
-			name:'D',
-			picture:'../asset/photo/photo-article4.jpg',
-			price:95,
-			url:'subcategory/item'
-		},
-		{
-			name:'E',
-			picture:'../asset/photo/photo-article5.jpg',
-			price:38,
-			url:'subcategory/item'
-		},
-		{
-			name:'F',
-			picture:'../asset/photo/photo-article6.jpg',
-			price:55,
-			url:'subcategory/item'
-		},
-		{
-			name:'G',
-			picture:'../asset/photo/photo-article7.jpg',
-			price:40,
-			url:'subcategory/item'
-		},
-		{
-			name:'H',
-			picture:'../asset/photo/photo-article8.jpg',
-			price:35,
-			url:'subcategory/item'
-		},
-		{
-			name:'I',
-			picture:'../asset/photo/photo-article9.jpg',
-			price:63,
-			url:'subcategory/item'
-		},
-		{
-			name:'J',
-			picture:'../asset/photo/photo-article10.jpg',
-			price:57,
-			url:'subcategory/item'
-		}
-	];
+ 
+  if (!context) {
+    return <p>Chargement des données...</p>;
+  }
+  
 
-    const category:any=[
-		{
-			name:'Robe',
-			description:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?'
-		}
-	];
+  const { content, isLoading, error } = context;
 
-    return <>
-                    <div>
-                    <header>
-                        <h1 className='center'>Titre du site</h1>
-                    </header>
-                    <main>
-                        <section>
-                        <h2>{category[0].name}</h2>
-				<article>
-					<p>
-					{category[0].description}
-					</p>
-				</article>
-                            <aside className='home'>
-							{articles.map((article)=><Items key={article.name} name={article.name} picture={article.picture} price={article.price} url={article.url} />)}
-                            </aside>
-                        </section>
-                    </main>
-                </div>
-</>;
+  if(error) return <p className='red-color'>Une Erreur c'est produite lors du chargement des données</p>
+
+  if (isLoading || !content.items.length)  return <p>Chargement des données...</p>;
+  
+ 
+  // Récupération des données
+  const articles: ArticleProp[] = content.items;
+  const category: catProps[] = content.category
+  const subCategory : catProps[] = content.subCategory;
+
+  if(verif.length===1){
+    const filteredCategory = category.filter(
+      (cat) => cat.name.toLowerCase() === verif[0]
+    );
+  
+    if (filteredCategory.length === 0) {
+      // Rediriger vers la page 404 si aucune categorie n'est trouvé
+      navigate('/404');
+      return null; 
+    }
+
+    return <CategoryItems category={filteredCategory} articles={articles} />
+  }
+  else if(verif.length===2){
+    const filteredsubCategory = subCategory.filter(
+      (sub) =>sub.category.toLowerCase() === verif[0] && sub.name.toLowerCase() === verif[1]
+    );
+  
+    if (filteredsubCategory.length === 0) {
+      // Rediriger vers la page 404 si aucune categorie n'est trouvé
+      navigate('/404');
+      return null; 
+    }
+
+     return <CategoryItems category={filteredsubCategory} articles={articles} />
+    }
+
+  else if(verif.length===3){
+    const filteredarticle = articles.filter(
+      (article) =>article.category.toLowerCase() === verif[0] && article.subcategory.toLowerCase() === verif[1] && article.name.toLowerCase() === verif[2]
+    );
+  
+    if (filteredarticle.length === 0) {
+      // Rediriger vers la page 404 si aucune categorie n'est trouvé
+      navigate('/404');
+      return null; 
+    }
+    return <><Item articles={articles} /></>
+  
+}else{ 
+	  return <>{redirect('404')}</>;
+  }
+
 }
 export default Category;

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, } from 'react';
 
 import "../style/image-zoomer.css"
 
@@ -42,6 +42,8 @@ const ImageZoomer: React.FC<PictureProps> = ({ picture }) => {
     style.top = `${y - 90}px`;
   };
 
+  const pictureZoom = picture.replace('.jpg','-zoom.jpg');
+
   return (
     <figure
       id="img-zoomer-box"
@@ -63,7 +65,7 @@ const ImageZoomer: React.FC<PictureProps> = ({ picture }) => {
           position: 'absolute',
           width: '10.625rem',
           height: '10.625rem',
-          backgroundImage: 'url(../../../asset/photo/photo-article6-zoom.jpg)',
+          backgroundImage: `url(${pictureZoom})`,
           backgroundRepeat: 'no-repeat',
           pointerEvents: 'none',
           borderRadius: '100%'
