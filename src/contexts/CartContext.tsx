@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, ReactNode, useContext } from "react";
+import React, { createContext, useEffect, useState, ReactNode, useContext } from 'react';
 
 export interface Product {
   id: string;
@@ -22,7 +22,7 @@ export const CartContext = createContext<CartContextType | null>(null);
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error("useCart must be used within a CartProvider");
+    throw new Error('useCart must be used within a CartProvider');
   }
   return context;
 };

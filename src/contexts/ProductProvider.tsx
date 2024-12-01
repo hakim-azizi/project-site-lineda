@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, ReactNode } from "react";
+import React, { createContext, useEffect, useState, ReactNode } from 'react';
 
 export type ItemProps = {
   id:string;
@@ -16,6 +16,7 @@ export type CategoryProps = {
   id: string;
   name: string;
   description: string;
+  category:string
 };
 
 export type subCategoryProps = {
@@ -43,9 +44,9 @@ export type ProductProviderProps = {
 export const ProductContext = createContext<ProductContextType | null>(null);
 
 export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) => {
-  const [error,setError]=useState<ProductContextType["error"]>(false);
-  const[isLoading, setIsLoading]=useState<ProductContextType["isLoading"]>(false);
-  const [content, setContent] = useState<ProductContextType["content"]>({
+  const [error,setError]=useState<ProductContextType['error']>(false);
+  const[isLoading, setIsLoading]=useState<ProductContextType['isLoading']>(false);
+  const [content, setContent] = useState<ProductContextType['content']>({
     items: [],
     category: [],
     subCategory: []
