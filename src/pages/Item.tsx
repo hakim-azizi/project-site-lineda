@@ -1,72 +1,92 @@
-import React, { useContext, useRef, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import ImageZoomer from "../component/ImageZoomer";
-import { CartContext } from "../contexts/CartContext";
-import { ProductContext } from "../contexts/ProductProvider";
-import { ItemProps } from "../contexts/ProductProvider";
+import React, { useContext, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import ImageZoomer from '../component/ImageZoomer';
+import { CartContext } from '../contexts/CartContext';
 
-import "../style/item.css";
-import "../style/form.css";
+import '../style/item.css';
+import '../style/form.css';
 
-const Item: React.FC = () => {
+type ItemProps = {
+  id:string,
+  name: string,
+  price: number,
+  description: string,
+  category: string,
+  subcategory: string,
+  picture: string,
+  url: string,
+  color:string,
+}
+
+const Item: React.FC<{ articles: ItemProps[] }> = ({ articles }) => {
   const location = useLocation().pathname;
-
-  const verif = location.split("/").filter((e) => e);
+  const navigate = useNavigate(); // Utilisé pour rediriger vers 404
+  const verif = location.split('/').filter((e) => e);
+  const validCartRef = useRef<HTMLDivElement  | null>(null);
   const quantityRef = useRef<HTMLSelectElement | null>(null);
   const [singularPlural, setSingularPlural] = useState<string>("de l'article");
   const [price, setPrice] = useState<number>(0);
-  const [objectDataUrl, setObjectDataUrl] = useState<string>("../../add-cart-object.html"); // URL par défaut pour la balise object
+  const [objectDataUrl, setObjectDataUrl] = useState<string>('../../add-cart-object.html');
 
   const cartContext = useContext(CartContext);
-  const productContext = useContext(ProductContext);
 
-  if (!cartContext || !productContext) {
+  if (!cartContext) {
     return <p>Chargement des données...</p>;
   }
 
-  const { content, isLoading, error } = productContext;
   const { addToCart } = cartContext;
 
-  if (error) return <p className="red-color">Une erreur s'est produite lors du chargement des données</p>;
+  // Filtrer l'article correspondant
+  const filteredArticles = articles.filter(
+    (article) => article.name.toLowerCase() === verif[2]
+  );
 
-  if (isLoading || !content.items.length) return <p>Chargement des données...</p>;
+  if (filteredArticles.length === 0) {
+    // Rediriger vers la page 404 si aucun article n'est trouvé
+    navigate('/404');
+    return null; // Assurez-vous de ne rien rendre après une redirection
+  }
 
-  let articles: ItemProps[] = [];
-  content.items.map((article) => {
-    if (article.name.toLowerCase() === verif[2]) {
-      articles.push(article);
-    }
-    return "ca marche";
-  });
-
-  const priceUnit: number = Number(articles[0].price);
+  // On suppose qu'un seul article correspond
+  const article = filteredArticles[0];
 
   const val = () => {
     if (quantityRef.current !== null) {
       const quantity = parseInt(quantityRef.current.value);
-      setSingularPlural(quantity > 1 ? "des articles" : "de l' article");
-      setPrice(priceUnit * quantity);
+      setSingularPlural(quantity > 1 ? 'des articles' : "de l'article");
+      setPrice(article.price * quantity);
     }
   };
 
   const addToCartHandler = (e: React.FormEvent) => {
     e.preventDefault();
     if (!quantityRef.current) return;
-
-    const quantity = parseInt(quantityRef.current.value);
+  
+    const quantity = Number(quantityRef.current.value);
     const product = {
-      id: articles[0].id, // Utiliser un identifiant unique
-      name: articles[0].name,
-      price: priceUnit,
+      id: article.id,
+      name: article.name,
+      price: article.price,
       quantity,
-      color: articles[0].color || "default", // Exemple pour gérer la couleur
+      color: article.color || 'default',
     };
-
+  
     addToCart(product);
-
-    const url = `http://localhost:8000/add-cart-object.php?name=${articles[0].name}&price=${priceUnit}&quantity=${quantity}`;
-    setObjectDataUrl(url); // Met à jour la balise <object>
+  
+    const url = `http://localhost:8000/add-cart-object.php?name=${article.name}&price=${article.price}&quantity=${quantity}`;
+    setObjectDataUrl(url);
+  
+    if (validCartRef.current) {
+      validCartRef.current.style.display = 'flex';
+    }
   };
+  
+  const closeAddCart = () => {
+    if (validCartRef.current) {
+      validCartRef.current.style.display = 'none';
+    }
+  };
+  
 
   const options = [];
   for (let i = 0; i < 10; i++) {
@@ -77,29 +97,31 @@ const Item: React.FC = () => {
     );
   }
 
+  const cart = ()=>{
+    navigate('../cart')
+  }
+
+
+
   return (
     <div>
       <header>
-        <h1 className="center">{articles[0].name}</h1>
+        <h1 className='center'>{article.name}</h1>
       </header>
       <main>
         <section>
-          <h2>{articles[0].name}</h2>
-          <aside className="picture">
-            <ImageZoomer picture={articles[0].picture} />
+          <h2>{article.name}</h2>
+          <aside className='picture'>
+            <ImageZoomer picture={article.picture} />
           </aside>
           <article>
-            <p>{articles[0].description}</p>
-            <form action="" method="get" id="cart" onSubmit={addToCartHandler}>
-              <p>
-                Nom de l'article : {articles[0].name}.
-                <input type="hidden" name="id-article" value="1" id="id-article" />
-              </p>
+            <p>{article.description}</p>
+            <form action='' method='get' id='cart' onSubmit={addToCartHandler}>
               <label>
                 Quantité :
                 <select
-                  name="quantity"
-                  id="quantity"
+                  name='quantity'
+                  id='quantity'
                   ref={quantityRef}
                   onChange={val}
                   required
@@ -108,22 +130,24 @@ const Item: React.FC = () => {
                 </select>
               </label>
               <p>
-                Prix : <span className="red-color">{articles[0].price} &euro;</span>
-                <input type="hidden" name="price" id="price" value={priceUnit} />
+                Prix : <span className='red-color'>{article.price} &euro;</span>
               </p>
               <p>
-                <span id="singular">Prix {singularPlural}</span> :{" "}
-                <span className="red-color" id="price-items">
-                  {price !== 0 ? price : articles[0].price} &euro;
+                <span id='singular'>Prix {singularPlural}</span> :{' '}
+                <span className='red-color' id='price-items'>
+                  {price !== 0 ? price : article.price} &euro;
                 </span>
               </p>
-              <button type="submit">Ajouter au panier</button>
+              <button type='submit'>Ajouter au panier</button>
             </form>
           </article>
         </section>
-       {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <object data={objectDataUrl} width="300" height="75"></object>
-        <NavLink to='../../cart'>Panier</NavLink>
+        <div className='valid-cart' ref={validCartRef}>
+         {/* eslint-disable-next-line jsx-a11y/alt-text */}
+        <object data={objectDataUrl} width='300' height='75'></object>
+        <button onClick={cart}>régler vos achats</button>
+        <button onClick={closeAddCart}>Continuez vos achats</button>
+        </div>
       </main>
     </div>
   );
