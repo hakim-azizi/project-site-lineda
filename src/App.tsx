@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ProductProvider } from "./contexts/ProductProvider"; // Importez le ProductProvider
 import { CartProvider } from "./contexts/CartContext";
 import Footer from "./component/Footer";
@@ -8,7 +8,7 @@ import Menu from "./component/Menu";
 
 import "./App.css";
 
-function App() {
+export const App: React.FC = () => {
   // Référence pour accéder au bouton
   const [openMenu, setOpenMenu] = useState<number>(0);
   const [screenWidth, setScreenWidth] = useState<number>(0);
@@ -66,7 +66,9 @@ function App() {
       <div className="alignment" ref={alignmentRef}>
       <ProductProvider>
         <Menu menuRef={menuRef} />
-           <Outlet />
+        {/* <div> */}
+            <Outlet />
+        {/* </div> */}
         </ProductProvider>
        </div>
        </CartProvider >

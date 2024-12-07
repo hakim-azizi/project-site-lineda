@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 import '../style/form.css';
 
@@ -42,10 +42,10 @@ function Contact(){
 							<input id='name' type='text' name='name' placeholder='Nom' required />
 						</label>
 						<label>Votre numéro de téléphone<br />
-							<input type="tel" id="phone" name="phone" placeholder='01-23-45-67-89' pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" />
+							<input type='tel' id='phone' name='phone' placeholder='01-23-45-67-89' pattern='[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}' />
 						</label>
 						<label>Votre adresse mail<br />
-							<input id='email' type='email' name='email' placeholder='adresse@mail.com' pattern="[a-z]{1}[a-z0-9\-_\.]{5,50}@[a-z]{1}[a-z0-9\-_\.]{5,50}\.[a-z]{2,4}" required />
+							<input id='email' type='email' name='email' placeholder='adresse@mail.com' pattern='[a-z]{1}[a-z0-9\-_\.]{5,50}@[a-z]{1}[a-z0-9\-_\.]{5,50}\.[a-z]{2,4}' required />
 						</label>
 						<label>Objet de votre message<br />
 							<input id='subject' type='text' name='subject' placeholder='Sujet du message' required />
@@ -53,6 +53,7 @@ function Contact(){
 						<label>message<br />
 							<textarea id='message' name='message' placeholder='Rédigez votre message ici' required></textarea>
 						</label>
+						<p>Vos données ne seront conservé que le temps du traitement de votre demande.</p>
 						<button type='submit'>Envoyez votre message</button>						
 					</form>
 				</article>
