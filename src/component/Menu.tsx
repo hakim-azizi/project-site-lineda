@@ -36,6 +36,7 @@ className='menu'
 ref={menuRef}>
 
 <ul> 
+	<li><NavLink to='search'>Recherche</NavLink></li>
 	<li><NavLink to='best-seller'>Top-vente</NavLink></li>
 	<li><NavLink to='list'>Catalogue</NavLink></li>
 		     {content.category.map((cat) => (

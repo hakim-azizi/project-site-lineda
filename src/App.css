@@ -89,3 +89,33 @@ aside{
 		width: calc(100vw - 18.725rem);
 	}
 }
+
+form>.search,
+.search{
+	width:15.625rem;
+	display: flex;
+	flex-wrap: nowrap;
+	margin:.5rem auto;
+	height:2rem;
+	align-items: center;
+	border-top:var(--dark-color) solid 1px;
+	border-bottom:var(--dark-color) solid 1px;
+	/* gap:.5rem; */
+}
+
+form>.search>button{
+	padding:0;
+	height:2rem;
+}
+
+form>.search>button>img,
+.search>img{
+width:2rem;
+height:auto;
+}
+
+.search>input{
+	width:calc(100% - 2rem);
+	font-size: 1.5rem;
+	padding:0;
+	}

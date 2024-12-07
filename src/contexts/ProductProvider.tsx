@@ -9,7 +9,13 @@ export type ItemProps = {
   subcategory: string;
   picture: string;
   url: string;
-  color:string;
+  color:string
+};
+
+export type HomeProps = {
+  sitename: string;
+  description: string;
+  subtitle:string
 };
 
 export type CategoryProps = {
@@ -23,12 +29,13 @@ export type subCategoryProps = {
   id:string;
   name: string;
   category: string;
-  description: string;
+  description: string
 };
 
 export type ProductContextType = {
   content: {
     items: ItemProps[];
+    home: HomeProps[];
     category: CategoryProps[];
     subCategory: subCategoryProps[];
   };
@@ -49,7 +56,8 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) =>
   const [content, setContent] = useState<ProductContextType['content']>({
     items: [],
     category: [],
-    subCategory: []
+    subCategory: [],
+    home:[]
   });
 
   useEffect(() => {
