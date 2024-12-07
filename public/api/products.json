@@ -1,4 +1,12 @@
 {
+    "home":
+        [
+            {
+                "sitename":"LINEDA's Vêtements",
+                "subtitle":"Sous-titre",
+                "description":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo nisi explicabo dignissimos ad, ipsa sequi? Omnis et id ratione accusantium, amet ipsa nobis praesentium ex a itaque esse vel labore?"
+            }
+        ],
 	"category":
         [
             {
