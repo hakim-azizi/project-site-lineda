@@ -101,8 +101,7 @@ const Item: React.FC<{ articles: ItemProps[] }> = ({ articles }) => {
     navigate('../cart')
   }
 
-  return (
-    <div>
+  return <>
       <header>
         <h1 className='center'>{article.name}</h1>
       </header>
@@ -147,8 +146,7 @@ const Item: React.FC<{ articles: ItemProps[] }> = ({ articles }) => {
         <button onClick={closeAddCart}>Continuez vos achats</button>
         </div>
       </main>
-    </div>
-  );
+    </>;
 };
 
 export default Item;

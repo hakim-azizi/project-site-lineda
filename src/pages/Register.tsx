@@ -26,8 +26,7 @@ const Register: React.FC = () => {
         // Effectuez vos validations et traitements ici
     };
 
-    return (
-        <div>
+    return <>
             <header>
                 <h1 className='center'>Inscription</h1>
             </header>
@@ -134,8 +133,7 @@ const Register: React.FC = () => {
                     </form>
                 </section>
             </main>
-        </div>
-    );
+        </>;
 };
 
 export default Register;

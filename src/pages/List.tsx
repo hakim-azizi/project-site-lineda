@@ -18,7 +18,6 @@ const List: React.FC = () => {
   const articles: ItemsProps[] = content.items;
 
     return <>
-        <div>
         <header>
 			<h1 className='center'>Catalogue</h1>
 			</header>
@@ -31,7 +30,6 @@ const List: React.FC = () => {
 					<p className='center'>&lt;&lt; précedent - suivant &gt;&gt;</p>
 				</section>
 		</main>
-        </div>
     </>;
 }
 export default List;

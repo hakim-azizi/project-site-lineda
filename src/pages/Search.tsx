@@ -39,8 +39,7 @@ export const Search: React.FC = () => {
 
   const articles: ArticlesProps[] = content.items; // Retrieve articles from context data
 
-  return (
-    <>
+  return <>
         {/* Render the FormSearch component to handle search functionality */}
         <FormSearch
           articles={articles} // Pass articles as a prop
@@ -64,6 +63,5 @@ export const Search: React.FC = () => {
             />
           ))}
         </aside>
-    </>
-  );
+    </>;
 };

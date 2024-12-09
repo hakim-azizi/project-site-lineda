@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useLoaderData, useLocation,useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useLoaderData, useLocation,useNavigate } from 'react-router-dom';
 
 function Keyword(){
     const [name,setName]=useState<string>('');
@@ -27,7 +27,6 @@ function Keyword(){
     }, [checked, valid, navigate,datakeywords, keyword]);
 
     return <>
-                    <div>
                     <header>
                         <h1 className='center'>{name}</h1>
                     </header>
@@ -44,7 +43,6 @@ function Keyword(){
                 </aside> */}
             </section>
         </main>
-    </div>
 </>;
 }
 export default Keyword;

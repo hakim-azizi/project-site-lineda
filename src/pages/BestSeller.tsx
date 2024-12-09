@@ -19,7 +19,6 @@ if(articles.length!==10){return <div>chargement en cours ...</div>}
    
 
     return <>
-    		<div>
 		<header>
 			<h1 className='center'>Top vente</h1>
 			</header>
@@ -32,7 +31,7 @@ if(articles.length!==10){return <div>chargement en cours ...</div>}
 							</aside>
 				</section>
 		</main>
-			</div>
+			
     </>;
 }
 export default BestSeller;

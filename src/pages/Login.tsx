@@ -22,9 +22,7 @@ const Login: React.FC = () => {
         }
     };
 
-    return (
-        <>
-            <div>
+    return <>
                 <header>
                     <h1 className='center'>Connexion</h1>
                 </header>
@@ -62,9 +60,7 @@ const Login: React.FC = () => {
                         </p>
                     </section>
                 </main>
-            </div>
-        </>
-    );
+            </>;
 };
 
 export default Login;

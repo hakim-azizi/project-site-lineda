@@ -29,8 +29,7 @@ const selectQuantity=(product:QuantityProps)=>{
   }
 }
 
-  return (
-    <div>
+  return <>
       <h2>Panier</h2>
       <ul>
         {cart.map((product: Product) => (
@@ -49,8 +48,7 @@ const selectQuantity=(product:QuantityProps)=>{
       </ul>
       <h3>Total: {total} &euro;</h3>
    
-    </div>
-  );
+    </>;
 };
 
 export default CartPage;
