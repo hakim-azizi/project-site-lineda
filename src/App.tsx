@@ -1,12 +1,13 @@
-import { Outlet } from "react-router-dom";
-import React, { useEffect, useRef, useState } from "react";
-import { ProductProvider } from "./contexts/ProductProvider"; // Importez le ProductProvider
+import { Outlet,useLocation } from "react-router-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { ProductContext } from './contexts/ProductProvider';
 import { CartProvider } from "./contexts/CartContext";
 import Footer from "./component/Footer";
 import Navbar from "./component/Navbar";
 import Menu from "./component/Menu";
 
 import "./App.css";
+import { ArticlesProps,FormSearch } from "./component/FormSearch";
 
 export const App: React.FC = () => {
   // Référence pour accéder au bouton
@@ -15,6 +16,8 @@ export const App: React.FC = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const alignmentRef = useRef<HTMLDivElement>(null);
+
+  const location = useLocation().pathname; // Get the current pathname
 
   const menu = (event: React.MouseEvent<HTMLButtonElement>) => {
     const button = buttonRef.current; // Référence au bouton
@@ -59,18 +62,44 @@ export const App: React.FC = () => {
     };
   }, [openMenu, screenWidth]); // Ajout de dépendances
 
+  // Consume the ProductContext to access application state
+  const context = useContext(ProductContext);
+  if (!context) {
+    // Display a loading message if the context is not ready
+    return <p>Chargement des données...</p>;
+  }
+
+  const { content, isLoading, error } = context;
+  // Destructure the context to extract content, loading status, and errors
+
+  if (error) {
+    // Display an error message if there was an issue fetching data
+    return (
+      <p className='red-color'>
+        Une Erreur s'est produite lors du chargement des données
+      </p>
+    );
+  }
+
+  if (isLoading || !content.items.length) {
+    // Display a loading message if data is still being fetched
+    return <p>Chargement des données...</p>;
+  }
+
+  const articles: ArticlesProps[] = content.items;
+
   return (
     <>
     <CartProvider>
       <Navbar menu={menu} buttonRef={buttonRef} />
       <div className="alignment" ref={alignmentRef}>
-      <ProductProvider>
+      
         <Menu menuRef={menuRef} />
-        {/* <div> */}
+        <div>
+        {location !== '/search' && <FormSearch articles={articles} />}
             <Outlet />
-        {/* </div> */}
-        </ProductProvider>
-       </div>
+        </div>
+        </div>
        </CartProvider >
       <Footer />
     </>
