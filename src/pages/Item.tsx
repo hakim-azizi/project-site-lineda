@@ -73,7 +73,7 @@ const Item: React.FC<{ articles: ItemProps[] }> = ({ articles }) => {
   
     addToCart(product);
   
-    const url = `http://localhost:8000/add-cart-object.php?name=${article.name}&price=${article.price}&quantity=${quantity}`;
+    const url = `${process.env.REACT_APP_API_URL}/add-cart-object.php?name=${article.name}&price=${article.price}&quantity=${quantity}`;
     setObjectDataUrl(url);
   
     if (validCartRef.current) {
@@ -101,8 +101,6 @@ const Item: React.FC<{ articles: ItemProps[] }> = ({ articles }) => {
     navigate('../cart')
   }
 
-
-
   return (
     <div>
       <header>
@@ -112,7 +110,7 @@ const Item: React.FC<{ articles: ItemProps[] }> = ({ articles }) => {
         <section>
           <h2>{article.name}</h2>
           <aside className='picture'>
-            <ImageZoomer picture={article.picture} />
+            <ImageZoomer picture={`../../${article.picture}`} />
           </aside>
           <article>
             <p>{article.description}</p>
