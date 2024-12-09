@@ -41,7 +41,6 @@ export const Search: React.FC = () => {
 
   return (
     <>
-      <div>
         {/* Render the FormSearch component to handle search functionality */}
         <FormSearch
           articles={articles} // Pass articles as a prop
@@ -65,7 +64,6 @@ export const Search: React.FC = () => {
             />
           ))}
         </aside>
-      </div>
     </>
   );
 };

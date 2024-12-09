@@ -1,13 +1,13 @@
-import { Outlet,useLocation } from "react-router-dom";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { Outlet,useLocation } from 'react-router-dom';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ProductContext } from './contexts/ProductProvider';
-import { CartProvider } from "./contexts/CartContext";
-import Footer from "./component/Footer";
-import Navbar from "./component/Navbar";
-import Menu from "./component/Menu";
+import { CartProvider } from './contexts/CartContext';
+import Footer from './component/Footer';
+import Navbar from './component/Navbar';
+import Menu from './component/Menu';
 
-import "./App.css";
-import { ArticlesProps,FormSearch } from "./component/FormSearch";
+import './App.css';
+import { ArticlesProps,FormSearch } from './component/FormSearch';
 
 export const App: React.FC = () => {
   // Référence pour accéder au bouton
@@ -23,8 +23,8 @@ export const App: React.FC = () => {
     const button = buttonRef.current; // Référence au bouton
     if (button) {
       // Bascule la classe et l'attribut `aria-expanded`
-      button.classList.toggle("opened");
-      button.setAttribute("aria-expanded", button.classList.contains("opened").toString());
+      button.classList.toggle('opened');
+      button.setAttribute('aria-expanded', button.classList.contains('opened').toString());
     }
     if (menuRef.current) {
       if (openMenu === 0) {
@@ -32,7 +32,7 @@ export const App: React.FC = () => {
         menuRef.current.style.width = `${15.625}rem`;
       } else {
         setOpenMenu(0);
-        menuRef.current.style.width = "0";
+        menuRef.current.style.width = '0';
       }
     }
   };
@@ -47,18 +47,18 @@ export const App: React.FC = () => {
           if (openMenu === 1) {
             menuRef.current.style.width = `${15.625}rem`;
           } else {
-            menuRef.current.style.width = "0";
+            menuRef.current.style.width = '0';
           }
         }
       }
     }
 
     // Ajoute un écouteur de redimensionnement
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
       // Nettoyage de l'écouteur d'événement
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, [openMenu, screenWidth]); // Ajout de dépendances
 
@@ -92,7 +92,7 @@ export const App: React.FC = () => {
     <>
     <CartProvider>
       <Navbar menu={menu} buttonRef={buttonRef} />
-      <div className="alignment" ref={alignmentRef}>
+      <div className='alignment' ref={alignmentRef}>
       
         <Menu menuRef={menuRef} />
         <div>

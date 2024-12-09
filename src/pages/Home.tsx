@@ -4,7 +4,7 @@ import { ProductContext, HomeProps } from '../contexts/ProductProvider';
 // Import the ProductContext and the HomeProps type for type safety
 import Items, { ItemsProps } from '../component/Items';
 // Import the Items component and its props type
-import { ArticlesProps, FormSearch } from '../component/FormSearch';
+import { FormSearch } from '../component/FormSearch';
 // Import the ArticlesProps type and FormSearch component
 import '../style/home.css';
 // Import the CSS styles specific to the Home component
@@ -50,14 +50,13 @@ export const Home: React.FC = () => {
   };
 
   // Extract and type cast data from the context content
-  const articles: ArticlesProps[] = content.items;
+  const articles: ItemsProps[] = content.items;
   const category = content.category[randomiser(content.category.length)];
   const subCategory = content.subCategory[randomiser(content.subCategory.length)];
   const homePage: HomeProps[] = content.home;
 
-  return (
-    <div>
-      {/* Include the search form component */}
+  return <>
+          {/* Include the search form component */}
       <FormSearch articles={articles} />
       <header>
         <h1 className='center'>{homePage[0].sitename}</h1>
@@ -137,6 +136,5 @@ export const Home: React.FC = () => {
           </aside>
         </section>
       </main>
-    </div>
-  );
+      </>;
 };
