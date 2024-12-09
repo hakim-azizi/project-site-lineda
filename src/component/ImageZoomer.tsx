@@ -1,6 +1,6 @@
 import React, { useRef, } from 'react';
 
-import "../style/image-zoomer.css"
+import '../style/image-zoomer.css'
 
 export type PictureProps = {
   picture: string;
@@ -46,20 +46,20 @@ const ImageZoomer: React.FC<PictureProps> = ({ picture }) => {
 
   return (
     <figure
-      id="img-zoomer-box"
+      id='img-zoomer-box'
       ref={zoomerBoxRef}
       onMouseMove={handleMouseMove}
       style={{ position: 'relative', width: '100%', height: 'auto', overflow: 'hidden' }}
     >
       <img
-        id="img-1"
+        id='img-1'
         ref={originalImageRef}
         src={picture}
-        alt="Original"
+        alt='Original'
         style={{ width: '100%', height: 'auto' }}
       />
       <div
-        id="img-2"
+        id='img-2'
         ref={magnifiedImageRef}
         style={{
           position: 'absolute',
