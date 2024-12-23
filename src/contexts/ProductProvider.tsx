@@ -65,7 +65,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) =>
 	});
 
 	useEffect(() => {
-		fetch(`http://192.168.0.44:8000/api.php?api=contents`)
+		fetch(`${process.env.REACT_APP_API_URL}/api/contents.json`)
 		.then((response) => response.json())
 		.then((data) => {
 			setContent(data);
