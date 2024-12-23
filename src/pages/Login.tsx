@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import React, { useRef } from 'react';
 
-const Login: React.FC = () => {
+export const Login: React.FC = () => {
   
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const submit = (e: React.FormEvent) => {
         e.preventDefault();
 
       
@@ -14,8 +14,7 @@ const Login: React.FC = () => {
         const password = passwordRef.current?.value;
 
         if (email && password) {
-            console.log('Email:', email);
-            console.log('Mot de passe:', password);
+
           
         } else {
             console.error('Tous les champs doivent être remplis.');
@@ -29,7 +28,7 @@ const Login: React.FC = () => {
                 <main>
                     <section>
                         <h2>Connexion</h2>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={submit}>
                             <label>
                                 Votre adresse mail<br />
                                 <input
@@ -63,4 +62,4 @@ const Login: React.FC = () => {
             </>;
 };
 
-export default Login;
+

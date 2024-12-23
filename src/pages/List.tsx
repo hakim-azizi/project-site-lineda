@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { ProductContext } from '../contexts/ProductProvider';
-import Items, {ItemsProps} from '../component/Items';
+import { Items, ItemsProps} from '../component/Items';
 
-const List: React.FC = () => {
+export const List: React.FC = () => {
   const context = useContext(ProductContext);
   
   if (!context) {
@@ -32,4 +32,3 @@ const List: React.FC = () => {
 		</main>
     </>;
 }
-export default List;

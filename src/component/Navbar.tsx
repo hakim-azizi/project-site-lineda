@@ -1,14 +1,88 @@
 import { NavLink } from 'react-router-dom';
 
 import '../style/navbar.css';
+import { CartContent } from './CartContent';
+import { useContext, useEffect, useRef,useState } from 'react';
+import { CartContext, CartContextType } from '../contexts/CartContext';
 
 export interface MenuProps {
     menu: (event: React.MouseEvent<HTMLButtonElement>) => void;
     buttonRef: React.RefObject<HTMLButtonElement>;
+	};
+
+	export const Navbar: React.FC<MenuProps> = ({ menu,buttonRef }) => {
+    const { total } = useContext<CartContextType>(CartContext);
+	const openCartRef = useRef<HTMLDivElement | null>(null);
+	const sizeUlRef = useRef<HTMLUListElement | null>(null);
+	const [openViewCart,setOpenViewCart] = useState<number>(0);
+	const [sizeUl,setSizeUl] = useState<number>(0);
+  const [empty,setEmpty]=useState<boolean>(false);
+
+// Observer pour détecter les changements dynamiques dans la taille de <ul>
+useEffect(() => {
+    const updateSize = () => {
+      if (sizeUlRef.current && openCartRef.current) {
+        // Récupérer la hauteur du contenu
+        const contentHeight = sizeUlRef.current.clientHeight / 16; // clientHeight (en rem)
+
+        // Ajouter le padding manuellement (haut + bas)
+        const computedStyles = getComputedStyle(sizeUlRef.current);
+        const paddingTop = parseFloat(computedStyles.marginTop) / 16; // Convertir en rem
+        const paddingBottom = parseFloat(computedStyles.marginBottom) / 16; // Convertir en rem
+
+        const newSize = contentHeight + paddingTop + paddingBottom; // Taille totale
+
+        setSizeUl(newSize); // Mettre à jour la taille réelle
+
+        // Si le panier est ouvert, appliquer immédiatement la hauteur
+        if (openViewCart === 1) {
+          openCartRef.current.style.height = `${newSize}rem`;
+        }
+      }
+    };
+
+    // Observer les changements de taille de <ul>
+    const observer = new ResizeObserver(() => {
+      updateSize();
+    });
+
+    if (sizeUlRef.current) {
+      observer.observe(sizeUlRef.current);
+      updateSize(); // Initialiser la taille au montage
+    }
+
+    return () => {
+      if (sizeUlRef.current) {
+        /* eslint-disable-next-line react-hooks/exhaustive-deps */
+        observer.unobserve(sizeUlRef.current);
+      }
+    };
+  }, [openViewCart]);
+
+  useEffect(() => {
+if(total===0){
+  setEmpty(false)
+}else{setEmpty(true)}
+  }, [total]);
+  // Synchroniser la hauteur du panier avec son état initial
+  useEffect(() => {
+    if (openCartRef.current) {
+      openCartRef.current.style.height = '0'; // Assurez-vous qu'il démarre fermé
+    }
+  }, []); // Exécuter une seule fois au chargement
+
+  const openCart = () => {
+    if (openCartRef.current) {
+      if (openViewCart === 0) {
+        setOpenViewCart(1);
+        openCartRef.current.style.height = `${sizeUl}rem`; // Ouvrir le panier
+      } else {
+        setOpenViewCart(0);
+        openCartRef.current.style.height = '0'; // Fermer le panier
+      }
+    }
   };
 
-const Navbar: React.FC<MenuProps> = ({ menu,buttonRef }) => {
- 
 	return <>
 		<header className='navbar'>
 		<button
@@ -28,12 +102,11 @@ const Navbar: React.FC<MenuProps> = ({ menu,buttonRef }) => {
 		<li className='show'><NavLink to='./'><img src='../../asset/pictures/home.png' alt='aller sur la page d&apos;accueil' title='Page d&apos;accueil' /></NavLink></li>
 		<li><img src='../../asset/pictures/account.png' alt='Se connecter' title='Connexion' /></li>
 		<li><NavLink to='contact'><img src='../../asset/pictures/contact.png' alt='Nous contacter' title='Contact' /></NavLink></li>
-		<li><img src='../../asset/pictures/cart.png' alt='Ouvrir le panier' title='panier' /></li>
+		<li onClick={openCart} style={!empty ? {} : { background: '#ff0000' } }><img src='../../asset/pictures/cart.png' alt='Ouvrir le panier' title='panier' /></li>
 	</ul>
 	</header>
-	{ /* <ul className='cart'>
-		<li>Votre panier est vide</li>
-	</ul> */}
+	<div className='cart'  ref={openCartRef}>
+		<CartContent pic={false} sizeUlRef={sizeUlRef} />
+	</div>
 	</>;
 };
-export default Navbar;

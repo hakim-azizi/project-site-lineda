@@ -5,7 +5,7 @@ if(!file_exists('api/'.$_GET['api'].'.json')){
 }
 
 // Autoriser une origine spécifique (par exemple React en localhost)
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: *");
 
 // Autoriser les méthodes HTTP nécessaires
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -21,12 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 header("Content-Type: application/json");
 
-if ($_GET['api'] === 'keywords') {
+if ($_GET['api'] === 'best-seller') {
+    $data = str_replace(['}1','}
+    1'],'}',include('api/best-seller.json'));
+} elseif ($_GET['api'] === 'contents') {
+    $data = str_replace(['}1','}
+    1'],'}',include('api/contents.json'));
+} elseif ($_GET['api'] === 'keywords') {
     $data = str_replace(['}1','}
     1'],'}',include('api/keywords.json'));
-} elseif ($_GET['api'] === 'products') {
-    $data = str_replace(['}1','}
-    1'],'}',include('api/products.json'));
 } else {
     $data = ["error" => "Invalid API request"];
 }

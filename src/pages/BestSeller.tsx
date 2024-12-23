@@ -1,22 +1,24 @@
-import { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
-import Items, {ItemsProps} from '../component/Items';
+import React, { useContext } from 'react';
+import { ProductContext,ItemProps } from '../contexts/ProductProvider';
 
-const BestSeller: React.FC = () => {
-	const [articles,setArticles]=useState<ItemsProps[]>([])
- 
-    const data:any=useLoaderData();
-   
+import { Items } from '../component/Items';
 
-    useEffect(() => {
-        
-        
-		setArticles(data.best_seller);
-       
-    }, [data.best_seller]);
+export const BestSeller: React.FC = () => {
+    const context = useContext(ProductContext);
+    if (!context) {
+        return <p>Chargement des données...</p>;
+}
 
-if(articles.length!==10){return <div>chargement en cours ...</div>}
-   
+const { content, isLoading, error } = context;
+
+if(error) return <p className='red-color'>Une Erreur c'est produite lors du chargement des données</p>
+
+if (isLoading || !content.best_seller.length)  return <p>Chargement des données...</p>;
+
+	
+const articles:ItemProps[]=content.best_seller;
+
+
 
     return <>
 		<header>
@@ -27,11 +29,18 @@ if(articles.length!==10){return <div>chargement en cours ...</div>}
 					<h2>Nos meilleurs vente</h2>
 					<p>Retrouvez le top 10 des meilleurs vente :</p>
                     <aside>
-{articles.map((article)=><Items key={article.name} name={article.name} picture={article.picture} price={article.price} url={article.url} />)}
+					{articles.map((article) => (
+                            <Items
+                                key={article.name}
+                                name={article.name}
+                                picture={article.picture}
+                                price={article.price}
+                                url={article.url}
+                            />
+                        ))}
 							</aside>
 				</section>
 		</main>
 			
     </>;
 }
-export default BestSeller;

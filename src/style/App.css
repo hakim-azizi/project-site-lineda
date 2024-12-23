@@ -6,11 +6,23 @@
 	--link-color-hover: #8b5529;
 }
 
+.loader{
+width:100%;
+height: 100vh;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
 *{
 	margin:0;
 	padding:0;
 	color: #000;
 }
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
 
 a{
 	text-decoration: underline;

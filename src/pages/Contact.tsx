@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 import '../style/form.css';
 
-function Contact(){
+export function Contact(){
 	const siteName:string="LINEDA VÊTEMENT's";
     return <>
         <header>
@@ -60,4 +60,3 @@ function Contact(){
 		</main>
     </>;
 }
-export default Contact;

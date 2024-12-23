@@ -2,11 +2,11 @@ import { Outlet,useLocation } from 'react-router-dom';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ProductContext } from './contexts/ProductProvider';
 import { CartProvider } from './contexts/CartContext';
-import Footer from './component/Footer';
-import Navbar from './component/Navbar';
-import Menu from './component/Menu';
+import { Footer } from './component/Footer';
+import { Navbar } from './component/Navbar';
+import { Menu } from './component/Menu';
 
-import './App.css';
+import './style/App.css';
 import { ArticlesProps,FormSearch } from './component/FormSearch';
 
 export const App: React.FC = () => {
@@ -16,6 +16,8 @@ export const App: React.FC = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const alignmentRef = useRef<HTMLDivElement>(null);
+  const latestState = useRef({ screenWidth, openMenu });
+  latestState.current = { screenWidth, openMenu };
 
   const location = useLocation().pathname; // Get the current pathname
 
@@ -39,10 +41,11 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     function handleResize() {
+      const { openMenu } = latestState.current;
       setScreenWidth(window.innerWidth);
       if (menuRef.current) {
-        if (screenWidth > 800) {
-          menuRef.current.style.width = `${15.625}rem`;
+        if (window.innerWidth > 800) {
+          menuRef.current.removeAttribute('style');
         } else {
           if (openMenu === 1) {
             menuRef.current.style.width = `${15.625}rem`;
@@ -53,7 +56,6 @@ export const App: React.FC = () => {
       }
     }
 
-    // Ajoute un écouteur de redimensionnement
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -66,7 +68,7 @@ export const App: React.FC = () => {
   const context = useContext(ProductContext);
   if (!context) {
     // Display a loading message if the context is not ready
-    return <p>Chargement des données...</p>;
+   return <picture className='loader'><img src='asset/pictures/loader.gif' alt='chargement en cours' /></picture>;
   }
 
   const { content, isLoading, error } = context;
@@ -75,15 +77,15 @@ export const App: React.FC = () => {
   if (error) {
     // Display an error message if there was an issue fetching data
     return (
-      <p className='red-color'>
-        Une Erreur s'est produite lors du chargement des données
+      <p className='red-color loader'>
+        Une Erreur s'est produite lors du chargement des données ...
       </p>
     );
   }
 
   if (isLoading || !content.items.length) {
     // Display a loading message if data is still being fetched
-    return <p>Chargement des données...</p>;
+    return <picture  className='loader'><img src='asset/pictures/loader.gif' alt='chargement en cours' /></picture>;
   }
 
   const articles: ArticlesProps[] = content.items;
@@ -105,5 +107,3 @@ export const App: React.FC = () => {
     </>
   );
 }
-
-export default App;
