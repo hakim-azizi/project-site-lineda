@@ -2,7 +2,8 @@ import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import { router  } from './routerV7';
-import './index.css';
+import { ProductProvider } from './contexts/ProductProvider'; // Importez le ProductProvider
+import './style/index.css';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -10,7 +11,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <ProductProvider>
     <RouterProvider router={router} />
+    </ProductProvider>
   </React.StrictMode>
 );
 

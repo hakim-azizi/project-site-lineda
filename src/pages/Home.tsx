@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
 // Import React and useContext hook to consume context
-import { ProductContext, HomeProps } from '../contexts/ProductProvider';
+import { ProductContext, SiteProps } from '../contexts/ProductProvider';
 // Import the ProductContext and the HomeProps type for type safety
-import Items, { ItemsProps } from '../component/Items';
+import { Items, ItemsProps } from '../component/Items';
+
 // Import the Items component and its props type
-import { ArticlesProps, FormSearch } from '../component/FormSearch';
-// Import the ArticlesProps type and FormSearch component
 import '../style/home.css';
 // Import the CSS styles specific to the Home component
 
 export const Home: React.FC = () => {
+
   // Consume the ProductContext to access application state
   const context = useContext(ProductContext);
   if (!context) {
     // Display a loading message if the context is not ready
-    return <p>Chargement des données...</p>;
+    return <picture><img src='asset/pictures/loader.gif' alt='chargement en cours' /></picture>;
   }
 
   const { content, isLoading, error } = context;
@@ -25,13 +25,13 @@ export const Home: React.FC = () => {
     return (
       <p className='red-color'>
         Une Erreur s'est produite lors du chargement des données
-      </p>
+              </p>
     );
   }
 
   if (isLoading || !content.items.length) {
     // Display a loading message if data is still being fetched
-    return <p>Chargement des données...</p>;
+    return <picture><img src='asset/pictures/loader.gif' alt='chargement en cours' /></picture>;
   }
 
   // Helper function to generate a random number within a specified range
@@ -50,15 +50,13 @@ export const Home: React.FC = () => {
   };
 
   // Extract and type cast data from the context content
-  const articles: ArticlesProps[] = content.items;
+  const articles: ItemsProps[] = content.items;
   const category = content.category[randomiser(content.category.length)];
   const subCategory = content.subCategory[randomiser(content.subCategory.length)];
-  const homePage: HomeProps[] = content.home;
+  const homePage: SiteProps[] = content.site;
 
-  return (
-    <div>
-      {/* Include the search form component */}
-      <FormSearch articles={articles} />
+  return <>
+          {/* Include the search form component */}
       <header>
         <h1 className='center'>{homePage[0].sitename}</h1>
         {/* Display the site name from the context */}
@@ -137,6 +135,5 @@ export const Home: React.FC = () => {
           </aside>
         </section>
       </main>
-    </div>
-  );
+      </>;
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Register: React.FC = () => {
+export const Register: React.FC = () => {
     const [formData, setFormData] = useState({
         firstname: '',
         name: '',
@@ -12,7 +12,7 @@ const Register: React.FC = () => {
         confirmBoat:''
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const change = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
@@ -20,28 +20,27 @@ const Register: React.FC = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const submit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form Data Submitted:', formData);
+  
         // Effectuez vos validations et traitements ici
     };
 
-    return (
-        <div>
+    return <>
             <header>
                 <h1 className='center'>Inscription</h1>
             </header>
             <main>
                 <section>
                     <h2>Inscription</h2>
-                    <form onSubmit={handleSubmit}><br />
+                    <form onSubmit={submit}><br />
                         <label>Votre Prénom
                         <input                            
                             type='text'
                             name='firstname'
                             placeholder='Prénom'
                             value={formData.firstname}
-                            onChange={handleChange}
+                            onChange={change}
                             required
                         />
                         </label>
@@ -52,7 +51,7 @@ const Register: React.FC = () => {
                             name='name'
                             placeholder='Nom'
                             value={formData.name}
-                            onChange={handleChange}
+                            onChange={change}
                             required
                         />
                         </label>
@@ -64,7 +63,7 @@ const Register: React.FC = () => {
                             placeholder='01-23-45-67-89'
                             pattern='[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}'
                             value={formData.phone}
-                            onChange={handleChange}
+                            onChange={change}
                         />
                         </label>
                         
@@ -74,7 +73,7 @@ const Register: React.FC = () => {
                             name='email'
                             placeholder='adresse@mail.com'
                             value={formData.email}
-                            onChange={handleChange}
+                            onChange={change}
                             required
                         />
                         </label>
@@ -86,7 +85,7 @@ const Register: React.FC = () => {
                             name='password'
                             placeholder='Mot de passe'
                             value={formData.password}
-                            onChange={handleChange}
+                            onChange={change}
                             required
                         />
                         </label>
@@ -97,7 +96,7 @@ const Register: React.FC = () => {
                             name='confirmPassword'
                             placeholder='Confirmer le mot de passe'
                             value={formData.confirmPassword}
-                            onChange={handleChange}
+                            onChange={change}
                             required
                         />
                         </label>
@@ -110,7 +109,7 @@ const Register: React.FC = () => {
                             name='boat'
                             placeholder='réponse en lettre'
                             value={formData.boatAnswer}
-                            onChange={handleChange}
+                            onChange={change}
                         />
                         </label>
                         <label>
@@ -126,7 +125,7 @@ const Register: React.FC = () => {
                             name='confirmBoat'
                             placeholder='réponse en lettre'
                             value={formData.confirmBoat}
-                            onChange={handleChange}
+                            onChange={change}
                         />
                         </label>
                         
@@ -134,8 +133,5 @@ const Register: React.FC = () => {
                     </form>
                 </section>
             </main>
-        </div>
-    );
+        </>;
 };
-
-export default Register;

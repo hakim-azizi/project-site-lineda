@@ -6,7 +6,7 @@ import { ArticlesProps } from '../component/FormSearch';
 // Import type for article props
 import { FormSearch } from '../component/FormSearch';
 // Import FormSearch component for search input
-import Items from '../component/Items';
+import { Items } from '../component/Items';
 // Import Items component for displaying individual articles
 import { useLocation } from 'react-router-dom';
 // Import hook to retrieve routing location information
@@ -39,9 +39,7 @@ export const Search: React.FC = () => {
 
   const articles: ArticlesProps[] = content.items; // Retrieve articles from context data
 
-  return (
-    <>
-      <div>
+  return <>
         {/* Render the FormSearch component to handle search functionality */}
         <FormSearch
           articles={articles} // Pass articles as a prop
@@ -65,7 +63,5 @@ export const Search: React.FC = () => {
             />
           ))}
         </aside>
-      </div>
-    </>
-  );
+    </>;
 };

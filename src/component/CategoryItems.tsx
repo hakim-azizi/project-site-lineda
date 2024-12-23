@@ -1,5 +1,5 @@
 import React from 'react';
-import Items from './Items';
+import { Items } from './Items';
 
 export type ArticleProp = {
     id:string,
@@ -24,8 +24,8 @@ type CategoryItemsProps = {
     articles: ArticleProp[];
 };
 
-const CategoryItems: React.FC<CategoryItemsProps> = ({ category, articles }) => {
-    console.log('category => ',category)
+export const CategoryItems: React.FC<CategoryItemsProps> = ({ category, articles }) => {
+    
     return (
         <div>
             <header>                
@@ -53,5 +53,3 @@ const CategoryItems: React.FC<CategoryItemsProps> = ({ category, articles }) => 
         </div>
     );
 };
-
-export default CategoryItems;

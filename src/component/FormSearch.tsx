@@ -108,7 +108,7 @@ export const FormSearch: React.FC<FormSearchProps> = ({
       <div className='search'>
         <button type='submit'>
           <img
-            src='http://localhost:3000/asset/pictures/search.jpg'
+            src='../../asset/pictures/search.jpg'
             alt='Faîtes votre recherche'
           />
         </button>
@@ -118,7 +118,7 @@ export const FormSearch: React.FC<FormSearchProps> = ({
   ) : (
     <label className='search'>
       <img
-        src='http://localhost:3000/asset/pictures/search.jpg'
+        src='../../asset/pictures/search.jpg'
         alt='Faîtes votre recherche'
       />
       <input

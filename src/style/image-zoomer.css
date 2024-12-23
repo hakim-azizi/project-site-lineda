@@ -1,6 +1,7 @@
 #img-zoomer-box {
-	min-width: 250px;
-	width: 570px;
+	min-width: 15.625rem;
+	max-width: 35.625rem;
+	width : calc(100% / 3);
 	height: auto;
 	position: relative;
 	margin: 1rem auto;
@@ -22,12 +23,12 @@
 #img-2 {
 	width: 10.625rem;
 	height: 10.625rem;
-	background-image: url('../../public/asset/photo/photo-article8-zoom.jpg') no-repeat #FFF;
+	background-image: url('../../public/asset/pictures/loader.gif') no-repeat #FFF;
 	box-shadow: 0 .3125 .625rem -.125rem rgba(0,0,0,0.3);
 	pointer-events: none;
 	position: absolute;
 	opacity: 0;
-	border: .25rem solid whitesmoke;
+	border: .25rem solid #F5F5F5;
 	z-index: 99;
 	border-radius: 100%;
 	display: block;

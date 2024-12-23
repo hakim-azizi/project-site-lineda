@@ -1,12 +1,14 @@
-import React, { useRef, } from 'react';
+import React, {  useEffect, useRef, useState, } from 'react';
 
-import "../style/image-zoomer.css"
+import '../style/image-zoomer.css'
 
 export type PictureProps = {
   picture: string;
 };
 
-const ImageZoomer: React.FC<PictureProps> = ({ picture }) => {
+export const ImageZoomer: React.FC<PictureProps> = ({ picture }) => {
+  const [loadingImg,setLoadingImg]=useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false); // Indique si une erreur s'est produite
   const zoomerBoxRef = useRef<HTMLDivElement | null>(null);
   const originalImageRef = useRef<HTMLImageElement | null>(null);
   const magnifiedImageRef = useRef<HTMLDivElement | null>(null);
@@ -43,23 +45,52 @@ const ImageZoomer: React.FC<PictureProps> = ({ picture }) => {
   };
 
   const pictureZoom = picture.replace('.jpg','-zoom.jpg');
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null;
 
-  return (
+    const checkReady = () => {
+      if (originalImageRef.current && originalImageRef.current.complete) {
+        if (intervalId) clearInterval(intervalId);
+        setLoadingImg(true);
+      }
+    };
+
+    if (originalImageRef.current && !originalImageRef.current.complete) {
+      intervalId = setInterval(checkReady, 150);
+    } else {
+      setLoadingImg(true);
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId); // Nettoyage
+    };
+  }, []);
+
+  const imageError = () => {
+    setLoadingImg(false); // Arrêter le loader
+    setError(true); // Afficher le message d'erreur
+  };
+  return <>
+              {error ? (
+      <p className='red-color'>Image loading error</p> // Message d'erreur
+    ) : (
     <figure
-      id="img-zoomer-box"
+      id='img-zoomer-box'
       ref={zoomerBoxRef}
       onMouseMove={handleMouseMove}
       style={{ position: 'relative', width: '100%', height: 'auto', overflow: 'hidden' }}
     >
+
       <img
-        id="img-1"
+        id='img-1'
         ref={originalImageRef}
-        src={picture}
-        alt="Original"
+        src={loadingImg ? picture : '../../asset/pictures/loader.gif'}
+        alt='Original'
         style={{ width: '100%', height: 'auto' }}
+        onError={imageError} // Gestion des erreurs
       />
       <div
-        id="img-2"
+        id='img-2'
         ref={magnifiedImageRef}
         style={{
           position: 'absolute',
@@ -71,8 +102,7 @@ const ImageZoomer: React.FC<PictureProps> = ({ picture }) => {
           borderRadius: '100%'
         }}
       ></div>
-    </figure>
-  );
+    
+    </figure>)}
+</>
 };
-
-export default ImageZoomer;

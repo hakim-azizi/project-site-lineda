@@ -4,23 +4,23 @@ import { App } from './App';
 // Import the root application component
 import { Home } from './pages/Home';
 // Import the Home page component
-import BestSeller from './pages/BestSeller';
+import { BestSeller } from './pages/BestSeller';
 // Import the BestSeller page component
-import CartPage from './pages/CartPage';
+import { CartPage } from './pages/CartPage';
 // Import the Cart page component
-import Category from './pages/Category';
+import { Category } from './pages/Category';
 // Import the Category page component (dynamic category routes)
-import Contact from './pages/Contact';
+import { Contact } from './pages/Contact';
 // Import the Contact page component
-import Keyword from './pages/Keyword';
+import { Keyword } from './pages/Keyword';
 // Import the Keyword page component for learning more about topics
-import List from './pages/List';
+import { List } from './pages/List';
 // Import the List page component
-import Login from './pages/Login';
+import { Login } from './pages/Login';
 // Import the Login page component
-import Register from './pages/Register';
+import { Register } from './pages/Register';
 // Import the Register page component
-import ConditionOfSale from './pages/TermsOfSale';
+import { TermOfSale } from './pages/TermsOfSale';
 // Import the Terms of Sale page component
 import { NotFound } from './pages/NotFound';
 // Import the NotFound page component for 404 errors
@@ -38,13 +38,7 @@ export const router = createBrowserRouter(
         <Route 
           path='best-seller' 
           element={<BestSeller />}
-          loader={async () =>
-            // Fetch data dynamically for the BestSeller page
-            fetch(`${process.env.REACT_APP_API_URL}/api.php?api=best-seller`).then((response) =>
-              response.json()
-            )
-          }
-        />
+          />
         <Route path='cart' element={<CartPage />} />
         {/* Define the Cart page route */}
         <Route path=':slug/' element={<Category />}>
@@ -58,12 +52,6 @@ export const router = createBrowserRouter(
         <Route
           path='learn-more/:slug'
           element={<Keyword />}
-          loader={async () =>
-            // Fetch data dynamically for the Keyword page
-            fetch(`${process.env.REACT_APP_API_URL}/api.php?api=keywords`).then((response) =>
-              response.json()
-            )
-          }
         />
         <Route path='list' element={<List />} />
         {/* Define the List page route */}
@@ -74,7 +62,7 @@ export const router = createBrowserRouter(
         <Route path='register' element={<Register />} />
         {/* Define the Register page route */}
       </Route>
-      <Route path='/condition-of-sale' element={<ConditionOfSale />} />
+      <Route path='/condition-of-sale' element={<TermOfSale />} />
       {/* Define the Terms of Sale page route */}
       <Route path='/404' element={<NotFound />} />
       {/* Define the 404 error page route */}

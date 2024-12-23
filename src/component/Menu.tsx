@@ -1,29 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { ProductContext } from '../contexts/ProductProvider';
 import { NavLink } from 'react-router-dom';
 
 import '../style/menu.css';
 
-type Keyword = {
-	name: string;
-  };
-
 export type ElementProps = {
 	menuRef: React.RefObject<HTMLDivElement>;
 	};
 
-	function Menu( {menuRef }: ElementProps ){
-		const [keyword,setKeyword] = useState<Keyword[]>([]);
-		useEffect(() => {
-			fetch(`${process.env.REACT_APP_API_URL}/api.php?api=keywords`)
-			.then((response) => response.json())
-			.then((data) => {
-			  setKeyword(data.keywords);
-			})
-			.catch((err) => {
-				console.error('Error fetching keywords:', err);
-			});
-		}, []);
+	export const Menu:React.FC<ElementProps> = ( { menuRef } ) =>{
+
 		const context = useContext(ProductContext);
 		
 		if (!context) {
@@ -50,7 +36,7 @@ ref={menuRef}>
 	      ))}
 	<li>En savoir plus
 		<ul>
-		{keyword.map((key) => (
+		{content.keywords.map((key) => (
 			<li key={key.name}><NavLink to={`learn-more/${key.name}`}>{key.name}</NavLink></li>
 		))}
 		</ul>
@@ -60,4 +46,3 @@ ref={menuRef}>
 </header>
 </>;
 };
-export default Menu;

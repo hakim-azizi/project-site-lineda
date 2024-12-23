@@ -1,12 +1,42 @@
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { ProductContext } from '../contexts/ProductProvider';
+
 import '../style/terms-of-sale.css';
 
-function ConditionOfSale(){
-	const siteName:string='Lineda Vêtements';
+
+export const TermOfSale: React.FC = () => {
+
+	  const context = useContext(ProductContext);
+	  if (!context) {
+		// Display a loading message if the context is not ready
+		return <picture><img src='asset/pictures/loader.gif' alt='chargement en cours' /></picture>;
+	  }
+ 
+  const { content, isLoading, error } = context;
+  // Destructure the context to extract content, loading status, and errors
+
+  if (error) {
+    // Display an error message if there was an issue fetching data
+    return (
+      <p className='red-color'>
+        Une Erreur s'est produite lors du chargement des données
+              </p>
+    );
+  }
+
+  if (isLoading || !content.site.length) {
+    // Display a loading message if data is still being fetched
+    return <picture><img src='asset/pictures/loader.gif' alt='chargement en cours' /></picture>;
+  }
+
+	const siteName:string=content.site[0].sitename;
+
 	return<>
 	<header>
 		<h1 className='center condition'>Conditions de vente</h1>
 	</header>
+	<NavLink to='' className='close-this-windows' onClick={()=> {window.close()}}>Fermer cette fenetre</NavLink>
 	<main className='condition'>
 		<section>
 <h2>Pr&eacute;ambule :</h2>
@@ -111,5 +141,4 @@ Comp&eacute;tence expresse est attribu&eacute;e aux juridictions de Nantes, lieu
 </section>
 </main>
 	</>;
-}
-export default ConditionOfSale;
+};
