@@ -144,7 +144,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 		};
 
 		addToCart(product);
-		const url = `${process.env.REACT_APP_API_URL}/add-cart-object.php?name=${article.name}&price=${article.price}&quantity=${quantity}`;
+		const url = `../../add-cart-object.html?name=${article.name}&price=${article.price}&quantity=${quantity}`;
 		setObjectDataUrl(url);
 
 		if (validCartRef.current) {
