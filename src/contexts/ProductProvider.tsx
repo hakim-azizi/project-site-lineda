@@ -1,16 +1,17 @@
 import React, { createContext, useEffect, useState, ReactNode } from 'react';
 
 export type ItemProps = {
-	id:string;
-	name: string;
-	price: number;
-	description: string;
-	category: string;
-	subcategory: string;
-	picture: string;
-	url: string;
-	color:string
-};
+	id ?: string;
+	name?: string;
+	price?: number;
+	description?: string;
+	category?: string;
+	subcategory?: string;
+	picture?: string;
+	url?: string;
+	color?:string;
+	quantity?:number
+	};
 
 export type SiteProps = {
 	sitename: string;
@@ -19,17 +20,17 @@ export type SiteProps = {
 };
 
 export type CategoryProps = {
-	id: string;
-	name: string;
-	description: string;
-	category:string
+	id?: string;
+	name?: string;
+	description?: string;
+	category?:string
 };
 
 export type subCategoryProps = {
-	id:string;
-	name: string;
-	category: string;
-	description: string
+	id?:string;
+	name?: string;
+	category?: string;
+	description?: string
 };
 
 export type ProductContextType = {
@@ -65,7 +66,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) =>
 	});
 
 	useEffect(() => {
-		fetch(`${process.env.REACT_APP_API_URL}/api/contents.json`)
+			 fetch(`${process.env.REACT_APP_API_URL}/api.php?api=contents`)		
 		.then((response) => response.json())
 		.then((data) => {
 			setContent(data);

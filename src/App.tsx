@@ -1,13 +1,14 @@
 import { Outlet,useLocation } from 'react-router-dom';
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { ProductContext } from './contexts/ProductProvider';
+import { ProductContext, ItemProps } from './contexts/ProductProvider';
 import { CartProvider } from './contexts/CartContext';
 import { Footer } from './component/Footer';
 import { Navbar } from './component/Navbar';
 import { Menu } from './component/Menu';
+import { FormSearch } from './component/FormSearch';
 
 import './style/App.css';
-import { ArticlesProps,FormSearch } from './component/FormSearch';
+
 
 export const App: React.FC = () => {
   // Référence pour accéder au bouton
@@ -88,7 +89,7 @@ export const App: React.FC = () => {
     return <picture  className='loader'><img src='asset/pictures/loader.gif' alt='chargement en cours' /></picture>;
   }
 
-  const articles: ArticlesProps[] = content.items;
+ const articles: ItemProps[] = content.items;
 
   return (
     <>

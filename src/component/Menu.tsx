@@ -26,10 +26,10 @@ ref={menuRef}>
 	<li><NavLink to='best-seller'>Top-vente</NavLink></li>
 	<li><NavLink to='list'>Catalogue</NavLink></li>
 		     {content.category.map((cat) => (
-	<li key={cat.id}><NavLink to={cat.name.toLowerCase()}>{cat.name}</NavLink>
+	<li key={cat.id}>{cat.name && <NavLink to={cat.name.toLowerCase()}>{cat.name}</NavLink> }
 		<ul>
 		{content.subCategory.map((sub) => (
-			sub.category===cat.name && (<li key={sub.id}><NavLink to={`${cat.name.toLowerCase()}/${sub.name.toLowerCase()}`}>{sub.name}</NavLink></li>)
+			cat.name && sub.name && sub.category===cat.name && (<li key={sub.id}><NavLink to={`${cat.name.toLowerCase()}/${sub.name.toLowerCase()}`}>{sub.name}</NavLink></li>)
 		))}
 		</ul>
 	</li>

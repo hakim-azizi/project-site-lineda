@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { ProductContext } from '../contexts/ProductProvider';
-import { Items, ItemsProps} from '../component/Items';
+import { ProductContext, ItemProps } from '../contexts/ProductProvider';
+import { Items } from '../component/Items';
 
 export const List: React.FC = () => {
   const context = useContext(ProductContext);
@@ -15,7 +15,7 @@ export const List: React.FC = () => {
 
   if (isLoading || !content.items.length)  return <p>Chargement des données...</p>;
 
-  const articles: ItemsProps[] = content.items;
+  const articles: ItemProps[] = content.items;
 
     return <>
         <header>
