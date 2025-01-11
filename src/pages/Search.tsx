@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 // Import React and hooks for state management and context
-import { ProductContext } from '../contexts/ProductProvider';
+import { ProductContext, ItemProps } from '../contexts/ProductProvider';
 // Import Product context for accessing shared data
-import { ArticlesProps } from '../component/FormSearch';
 // Import type for article props
 import { FormSearch } from '../component/FormSearch';
 // Import FormSearch component for search input
@@ -16,7 +15,7 @@ export const Search: React.FC = () => {
   let { search } = location.state || { search: '', articles: [] }; // Retrieve search state or set defaults
   const [searchQuery, setSearchQuery] = useState<string>(search); // State for managing the search query
   const [requestSearch, setRequestSearch] = useState<string>(''); // State for the current search request
-  const [filteredArticles, setFilteredArticles] = useState<ArticlesProps[]>([]); // State for the filtered articles
+  const [filteredArticles, setFilteredArticles] = useState<ItemProps[]>([]); // State for the filtered articles
 
   const context = useContext(ProductContext); // Access the product context
   if (!context) {
@@ -37,7 +36,7 @@ export const Search: React.FC = () => {
     return <p>Chargement des données...</p>; // Display loading message while data is loading
   }
 
-  const articles: ArticlesProps[] = content.items; // Retrieve articles from context data
+  const articles: ItemProps[] = content.items; // Retrieve articles from context data
 
   return <>
         {/* Render the FormSearch component to handle search functionality */}

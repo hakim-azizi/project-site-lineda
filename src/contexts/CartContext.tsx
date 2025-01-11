@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState, useRef, ReactNode } from 'react';
-import { ItemProps } from '../pages/Item';
+import { ItemProps } from './ProductProvider'; 
 import { useNavigate } from 'react-router-dom';
 import { Verif } from '../component/LibraryOfFunctions';
 
@@ -8,19 +8,10 @@ export type QuantityProps = {
 	quantity: number;
 };
 
-export type ProductType = {
-	id: string;
-	name: string;
-	price: number;
-	quantity: number;
-	color: string;
-	picture: string;
-	verif: string; // Ajout du champ "verif"
-};
 
 export type CartContextType = {
-	cart: ProductType[];
-	addToCart: (product: ProductType) => void;
+	cart: ItemProps[];
+	addToCart: (product: ItemProps) => void;
 	removeFromCart: (id: string) => void;
 	updateQuantity: (id: string, quantity: number) => void;
 	total: number;
@@ -63,7 +54,7 @@ export const CartContext = createContext<CartContextType>(defaultContext);
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 	const quantityRef = useRef<HTMLSelectElement | null>(null);
 	const validCartRef = useRef<HTMLDivElement | null>(null);
-	const [cart, setCart] = useState<ProductType[]>([]);
+	const [cart, setCart] = useState<ItemProps[]>([]);
 	const [total, setTotal] = useState(0);
 	const [singularPlural, setSingularPlural] = useState<string>("de l'article");
 	const [price, setPrice] = useState<number>(0);
@@ -81,17 +72,19 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 	}, []);
 
 	useEffect(() => {
+		
 		localStorage.setItem('cart', JSON.stringify(cart));
-		const newTotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+		const newTotal = cart.reduce((acc, item) =>  acc + item.price! * item.quantity!, 0);
 		setTotal(newTotal);
+
 	}, [cart]);
 
-	const addToCart = (product: ProductType) => {
+	const addToCart = (product: ItemProps) => {
 		const { value: verif } = Verif();
 		setCart((prevCart) => {
 			const existingProduct = prevCart.find((item) => item.id === product.id);
 			if (existingProduct) {
-				return prevCart.map((item) =>
+				return prevCart.map((item) => item.quantity && product.quantity &&
 					item.id === product.id
 						? { ...item, quantity: item.quantity + product.quantity }
 						: item
@@ -123,7 +116,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 		if (quantityRef.current) {
 			const quantity = parseInt(quantityRef.current.value);
 			setSingularPlural(quantity > 1 ? 'des articles' : "de l'article");
-			setPrice(article.price * quantity);
+			article.price && setPrice(article.price * quantity);
 		}
 	};
 

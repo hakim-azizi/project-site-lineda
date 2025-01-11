@@ -1,33 +1,26 @@
 import React from 'react';
 import { Items } from './Items';
+import { CategoryProps, ItemProps } from '../contexts/ProductProvider';
 
-export type ArticleProp = {
-    id:string,
-    name: string,
-    price: number,
-    description: string,
-    category: string,
-    subcategory: string,
-    picture: string,
-    url: string,
-    color:string
-};
 
-export type catProps = {
-    name: string,
-    category: string,
-    description: string
-};
 
 type CategoryItemsProps = {
-    category: catProps[];
-    articles: ArticleProp[];
+    category: CategoryProps[];
+    articles: ItemProps[];
+    subcategorySelection: boolean;
+    arraySubCategory?:CategoryProps[];
 };
 
-export const CategoryItems: React.FC<CategoryItemsProps> = ({ category, articles }) => {
+export const CategoryItems: React.FC<CategoryItemsProps> = ({ category,arraySubCategory, articles,subcategorySelection }) => {
     
-    return (
-        <div>
+    return (<>
+        {subcategorySelection && arraySubCategory && (
+            <select>
+                <option value=''>Sélectionnez une sous-categorie</option>
+           {arraySubCategory.map((arraySubCat) => (
+            <option key={arraySubCat.name} value={arraySubCat.name}>{arraySubCat.name}</option>
+))}
+        </select>)}
             <header>                
                 <h1 className='center'>{category[0].name}</h1>
             </header>
@@ -38,7 +31,7 @@ export const CategoryItems: React.FC<CategoryItemsProps> = ({ category, articles
                         <p>{category[0].description}</p>
                     </article>
                     <aside className='home'>
-                        {articles.map((article) => (
+                        {articles.length===0 ? <p>Pour le moment il n'ya pas d'articles dans cette categorie</p> : (articles.map((article) => (
                             <Items
                                 key={article.name}
                                 name={article.name}
@@ -46,10 +39,10 @@ export const CategoryItems: React.FC<CategoryItemsProps> = ({ category, articles
                                 price={article.price}
                                 url={article.url}
                             />
-                        ))}
+                        )))}
                     </aside>
                 </section>
             </main>
-        </div>
+     </>   
     );
 };

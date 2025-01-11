@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 // Import React and useContext hook to consume context
-import { ProductContext, SiteProps } from '../contexts/ProductProvider';
+import { ProductContext, SiteProps, ItemProps } from '../contexts/ProductProvider';
 // Import the ProductContext and the HomeProps type for type safety
-import { Items, ItemsProps } from '../component/Items';
+import { Items } from '../component/Items';
+  
+import { filterarticle } from '../component/LibraryOfFunctions';
 
 // Import the Items component and its props type
 import '../style/home.css';
@@ -50,7 +52,7 @@ export const Home: React.FC = () => {
   };
 
   // Extract and type cast data from the context content
-  const articles: ItemsProps[] = content.items;
+  const articles: ItemProps[] = content.items;
   const category = content.category[randomiser(content.category.length)];
   const subCategory = content.subCategory[randomiser(content.subCategory.length)];
   const homePage: SiteProps[] = content.site;
@@ -77,7 +79,7 @@ export const Home: React.FC = () => {
             {/* Map over the random numbers array to display random items */}
             {randomNumbers(content.items.length).map((rand) => {
               // Extract the required properties for the Items component
-              const { name, picture, price, url }: ItemsProps = articles[rand];
+              const { name, picture, price, url }: ItemProps = articles[rand];
               return (
                 <Items
                   key={rand}
@@ -98,8 +100,9 @@ export const Home: React.FC = () => {
           </article>
           <aside className='home'>
             {/* Map over the random numbers array to display random items from the category */}
-            {randomNumbers(content.items.length).map((rand) => {
-              const { name, picture, price, url }: ItemsProps = articles[rand];
+            {category.name && filterarticle(articles,category.name).length===0 ? <p>Pour le moment il n'ya pas d'articles dans cette categorie</p> : (randomNumbers(content.items.length).map((rand:number) => {
+
+const { name, picture, price, url }: ItemProps  = filterarticle(articles,category.name)[rand];
               return (
                 <Items
                   key={rand}
@@ -109,7 +112,7 @@ export const Home: React.FC = () => {
                   url={url}
                 />
               );
-            })}
+            }))}
           </aside>
         </section>
         {/* Display a subcategory section with a random subcategory and its articles */}
@@ -120,18 +123,19 @@ export const Home: React.FC = () => {
           </article>
           <aside className='home'>
             {/* Map over the random numbers array to display random items from the subcategory */}
-            {randomNumbers(content.items.length).map((rand) => {
-              const { name, picture, price, url }: ItemsProps = articles[rand];
-              return (
-                <Items
-                  key={rand}
-                  name={name}
-                  picture={picture}
-                  price={price}
-                  url={url}
-                />
-              );
-            })}
+            {subCategory.category && filterarticle(articles,subCategory.category,subCategory.name).length===0 ? <p>Pour le moment il n'ya pas d'articles dans cette categorie</p> : (randomNumbers(content.items.length).map((rand:number) => {
+
+const { name, picture, price, url }: ItemProps = filterarticle(articles,category.name)[rand];
+return (
+  <Items
+    key={rand}
+    name={name}
+    picture={picture}
+    price={price}
+    url={url}
+  />
+);
+}))}
           </aside>
         </section>
       </main>

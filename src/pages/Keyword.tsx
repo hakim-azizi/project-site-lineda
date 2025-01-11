@@ -26,7 +26,7 @@ if (isLoading || !content.items.length)  return <p>Chargement des données...</p
 const keywords: ItemProps[] = content.keywords;
 
 const filteredKeywords = keywords.filter(
-    (keywords) => keywords.name.toLowerCase() === keyword
+    (keywords) => keywords.name && keywords.name.toLowerCase() === keyword
   );
 
   if (filteredKeywords.length === 0) {

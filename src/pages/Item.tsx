@@ -1,22 +1,12 @@
 import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ItemProps } from '../contexts/ProductProvider';
 import { ImageZoomer } from '../component/ImageZoomer';
 import { CartContext } from '../contexts/CartContext';
 
 import '../style/item.css';
 import '../style/form.css';
 
-export type ItemProps = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  category: string;
-  subcategory: string;
-  picture: string;
-  url: string;
-  color: string;
-  };
 
   export const Item: React.FC<{ articles: ItemProps[] }> = ({ articles }) => {
   const location = useLocation().pathname;
@@ -37,7 +27,7 @@ export type ItemProps = {
   } = useContext(CartContext);
 
   const filteredArticles = articles.filter(
-    (article) => article.name.toLowerCase() === verif[2]
+    (article) => article.name && article.name.toLowerCase() === verif[2]
   );
 
   if (filteredArticles.length === 0) {

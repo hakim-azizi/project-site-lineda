@@ -4,23 +4,17 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // Import hooks for interacting with routing
 
 // Define the type for individual article properties
-export type ArticlesProps = {
-  name: string;
-  picture: string;
-  price: number;
-  url: string;
-};
-
+import { ItemProps } from '../contexts/ProductProvider';
 // Define the type for a base component prop (list of articles)
 export type BaseProps = {
-  articles: ArticlesProps[];
+  articles: ItemProps[];
 };
 
 // Define types for the props related to the search functionality
 export type SearchProps = {
   setRequestSearch: React.Dispatch<React.SetStateAction<string>>; // State setter for the search request
   requestSearch: string; // The current search request
-  setFilteredArticles: React.Dispatch<React.SetStateAction<ArticlesProps[]>>; // State setter for filtered articles
+  setFilteredArticles: React.Dispatch<React.SetStateAction<ItemProps[]>>; // State setter for filtered articles
   searchQuery: string; // The current search query string
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>; // State setter for the search query
 };
