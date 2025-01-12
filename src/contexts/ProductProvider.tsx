@@ -26,7 +26,7 @@ export type CategoryProps = {
 	category?:string
 };
 
-export type subCategoryProps = {
+export type SubCategoryProps = {
 	id?:string;
 	name?: string;
 	category?: string;
@@ -38,7 +38,7 @@ export type ProductContextType = {
 		items: ItemProps[];
 		site: SiteProps[];
 		category: CategoryProps[];
-		subCategory: subCategoryProps[];
+		subCategory: SubCategoryProps[];
 		keywords: ItemProps[];
 		best_seller:ItemProps[];
 	};
@@ -66,7 +66,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) =>
 	});
 
 	useEffect(() => {
-			 fetch(`${process.env.REACT_APP_API_URL}/api.php?api=contents`)		
+			 fetch(`https://raw.githubusercontent.com/hakim-azizi/project-site-lineda/refs/heads/main/public/api/contents.json`)		
 		.then((response) => response.json())
 		.then((data) => {
 			setContent(data);
