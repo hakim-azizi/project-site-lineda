@@ -26,7 +26,7 @@ export type CategoryProps = {
 	category?:string
 };
 
-export type subCategoryProps = {
+export type SubCategoryProps = {
 	id?:string;
 	name?: string;
 	category?: string;
@@ -38,7 +38,7 @@ export type ProductContextType = {
 		items: ItemProps[];
 		site: SiteProps[];
 		category: CategoryProps[];
-		subCategory: subCategoryProps[];
+		subCategory: SubCategoryProps[];
 		keywords: ItemProps[];
 		best_seller:ItemProps[];
 	};
