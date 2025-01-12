@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 // Import React and useContext hook to consume context
-import { ProductContext, SiteProps, ItemProps } from '../contexts/ProductProvider';
+import { ProductContext, SiteProps, ItemProps, SubCategoryProps, CategoryProps } from '../contexts/ProductProvider';
 // Import the ProductContext and the HomeProps type for type safety
 import { Items } from '../component/Items';
   
@@ -53,10 +53,10 @@ export const Home: React.FC = () => {
 
   // Extract and type cast data from the context content
   const articles: ItemProps[] = content.items;
-  const category = content.category[randomiser(content.category.length)];
-  const subCategory = content.subCategory[randomiser(content.subCategory.length)];
+  const category: CategoryProps = content.category[randomiser(content.category.length)];
+  const subCategory: SubCategoryProps = content.subCategory[randomiser(content.subCategory.length)];
   const homePage: SiteProps[] = content.site;
-
+ 
   return <>
           {/* Include the search form component */}
       <header>
@@ -79,6 +79,7 @@ export const Home: React.FC = () => {
             {/* Map over the random numbers array to display random items */}
             {randomNumbers(content.items.length).map((rand) => {
               // Extract the required properties for the Items component
+             
               const { name, picture, price, url }: ItemProps = articles[rand];
               return (
                 <Items
@@ -100,9 +101,9 @@ export const Home: React.FC = () => {
           </article>
           <aside className='home'>
             {/* Map over the random numbers array to display random items from the category */}
-            {category.name && filterarticle(articles,category.name).length===0 ? <p>Pour le moment il n'ya pas d'articles dans cette categorie</p> : (randomNumbers(content.items.length).map((rand:number) => {
+            {category.name && filterarticle(articles,category.name||'not').length===0 ? <p>Pour le moment il n'ya pas d'articles dans cette categorie</p> : (randomNumbers(filterarticle(articles,category.name||'not').length).map((rand:number) => {
 
-const { name, picture, price, url }: ItemProps  = filterarticle(articles,category.name)[rand];
+const { name, picture, price, url }: ItemProps  = filterarticle(articles,category.name||'not')[rand];
               return (
                 <Items
                   key={rand}
@@ -118,14 +119,14 @@ const { name, picture, price, url }: ItemProps  = filterarticle(articles,categor
         {/* Display a subcategory section with a random subcategory and its articles */}
         <section>
           <article>
-            <h2>{subCategory.name}</h2>
+            <h2>{`${subCategory.category}, ${subCategory.name}`}</h2>
             <p>{subCategory.description}</p>
           </article>
           <aside className='home'>
-            {/* Map over the random numbers array to display random items from the subcategory */}
-            {subCategory.category && filterarticle(articles,subCategory.category,subCategory.name).length===0 ? <p>Pour le moment il n'ya pas d'articles dans cette categorie</p> : (randomNumbers(content.items.length).map((rand:number) => {
+            {/* Map over the random numbers array to display random items from the subcategory */ }
+            { (filterarticle(articles,subCategory.category||'not',subCategory.name).length===0) ? <p>Pour le moment il n'ya pas d'articles dans cette categorie</p> : (randomNumbers(filterarticle(articles,subCategory.category||'not',subCategory.name).length).map((rand:number) => {
 
-const { name, picture, price, url }: ItemProps = filterarticle(articles,category.name)[rand];
+const { name, picture, price, url }: ItemProps =  filterarticle(articles,subCategory.category||'not',subCategory.name)[rand];
 return (
   <Items
     key={rand}
@@ -135,7 +136,7 @@ return (
     url={url}
   />
 );
-}))}
+            }))} 
           </aside>
         </section>
       </main>
