@@ -66,7 +66,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) =>
 	});
 
 	useEffect(() => {
-			 fetch(`https://raw.githubusercontent.com/hakim-azizi/project-site-lineda/refs/heads/main/public/api/contents.json`)		
+		fetch(`https://raw.githubusercontent.com/hakim-azizi/project-site-lineda/refs/heads/main/public/api/contents.json`)
 		.then((response) => response.json())
 		.then((data) => {
 			setContent(data);
