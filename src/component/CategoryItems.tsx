@@ -1,6 +1,6 @@
 import React from 'react';
 import { Items } from './Items';
-import { CategoryProps, ItemProps } from '../contexts/ProductProvider';
+import { CategoryProps, ItemProps, SubCategoryProps } from '../contexts/ProductProvider';
 
 
 
@@ -8,7 +8,7 @@ type CategoryItemsProps = {
     category: CategoryProps[];
     articles: ItemProps[];
     subcategorySelection: boolean;
-    arraySubCategory?:CategoryProps[];
+    arraySubCategory?:SubCategoryProps[];
 };
 
 export const CategoryItems: React.FC<CategoryItemsProps> = ({ category,arraySubCategory, articles,subcategorySelection }) => {
